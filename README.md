@@ -7,7 +7,9 @@ Link: [점프 투 파이썬](https://wikidocs.net/book/1)
 * 사칙연산
   ```python
   1 + 2
-  2 - 1
+  1 - 2
+  3 / 2.4
+  3 * 9
   ```
   <code>
     1 + 2
