@@ -45,6 +45,6 @@ Link: [점프 투 파이썬](https://wikidocs.net/book/1)
 * 함수
   ```python
   def sum(a, b):
-    return a+b
-  print(sum(3,4))
+    return a + b
+  print(sum(3, 4))
   ```
