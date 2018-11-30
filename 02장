@@ -74,7 +74,7 @@ c = 55
 17 % 3
 2
 ```
-++ 문제2,3 또 다른 풀이
+++ *문제2,3 또 다른 풀이*
 ```python
 divmod(17 , 3)
 (5, 2)
@@ -87,3 +87,89 @@ if a % 2 == 0:
 else:
   print("a는 홀수이다.")
 ```
+---
+#### 02-2. 문자열
++ 문자열 생성 방법
+```python
+"Hello World"
+'Python is fun'
+"""Life is too short, You need python"""
+'''Lige is too short, You need python'''
+```
++ 문자열 내 따옴표 포함 방법
+  1. 큰 따옴표 사용 - 작은 따옴표 포함
+  ```python
+  food = "Python's favorite food is perl."
+  ```
+  2. 작은 따옴표 사용 - 큰 따옴표 포함
+  ```python
+  say = '"Python is very easy." he says.'
+  ```
+  3. 백슬래시 사용 - 작은 따옴표, 큰 따옴표 모두 가능
+  ```python
+  food = 'Python\'s favorite food is perl.'
+  say = "\"Python is very easy.\" he says."
+  ```
++ 여러 줄의 문자열 변수 대입
+  1. 이스케이프 코드 `\n` 삽입
+  ```python
+  multiline = "Life is too short\nYou need python."
+  ```
+  2. 작은 따옴표/큰 따옴표 3개 연속 기입
+  ++ 작은 따옴표 3개 사용
+  ```python
+  multiline = '''
+  Life is too short
+  You need python.
+  '''
+  print(multiline)
+  ```
+  ++ 큰 따옴표 3개 사용
+  ```python
+  multiline = """
+  Life is too short
+  You need python.
+  """
+  print(multiline)
+  ```
+  ++ *주로 활용하는 이스케이프 코드*
+  +++ `\n` : 줄바꿈
+  +++ `\t` : 수평 탭
+  +++ `\\` : 문자 "`\`"
+  +++ `\'` : 단일 인용부호(`'`)
+  +++ `\"` : 이중 인용부호(`"`)
++ 문자열 연산
+  1. 문자열 더하기(Concatenation)
+  ```python
+  head = "Python"
+  tail = " is fun!"
+  head + tail
+  ```
+  2. 문자열 곱하기
+  ```python
+  a = "Python"
+  a * 2
+  ```
+  *문자열 곱하기 응용 - 에디터로 소스 작성*
+  ```python
+  # multistring.py
+  
+  print("=" * 50)
+  print("My Program")
+  print("=" * 50)
+  ```
++ 문자열 인덱싱(Indexing)
+```python
+>>> a = "Life is too short, You need Python"
+>>> a[3]
+'e'
+>>> a[0]
+'L'
+>>> a[-0]
+'L'
+>>> a[-1]
+'n'
+>>> a[-6]
+'P'
+```
++ 문자열 슬라이싱(Slicing)
