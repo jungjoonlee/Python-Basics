@@ -173,3 +173,63 @@ else:
 'P'
 ```
 + 문자열 슬라이싱(Slicing)
+```python
+>>> a = "Life is too short, You need Python."
+>>> a[0:4]
+'Life'
+>>> a[0:3]
+'Lif'
+>>> a[0:2]
+'Lf'
+```
+```python
+>>> a[5:7]
+'is'
+>>> a[12:17]
+'short'
+```
+```python
+>>> a[19:]
+'You need Python.'
+>>> a[:17]
+'Life is too short'
+>>> a[:]
+'Life is too short, You need Python.'
+```
+```python
+>>> a[19:-7]
+'You need '
+>>> a[-3:-1]
+'on'
+```
+```python
+>>> a = "20010331Rainy"
+>>> date = a[:8]
+>>> weather = a[8:]
+>>> date
+'20010331'
+>>> weather
+'Rainy'
+```
+```python
+>>> a = "20010331Rainy"
+>>> year = [a:4]
+>>> day = a[4:8]
+>>> weather = a[8:]
+>>> year
+'2001'
+>>> day
+'0331'
+>>> weather
+'Rainy'
+```
+```python
+>>> a = "Pithon"
+>>> a[:1]
+'P'
+>>> a[2:]
+'thon'
+>>> a[:1] + 'y' + a[2:]
+'Python'
+```
++ 문자열 포매팅(Formatting)
