@@ -416,3 +416,89 @@ else:
   ```
 + 문자열 관련 함수들
   1. 문자 개수 세기 (count)
+  ```python
+  >>> a = "hobby"
+  >>> a.count('b')
+  2
+  ```
+  2. 위치 알려주기1 (find)
+  ```python
+  >>> a = "Python is the best choice."
+  >>> a.find('b')
+  14
+  >>> a.find('k')
+  -1
+  ```
+  3. 위치 알려주기2 (index)
+  ```python
+  >>> a = "Life is too short."
+  >>> a.index('t')
+  8
+  >>> a.index('k')
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  ValueError: substring not found
+  ```
+  4. 문자열 삽입 (join)
+  ```python
+  >>> a = ","
+  >>> a.join('abcd')
+  'a,b,c,d'
+  ```
+  ```python
+  >>> ",".join('abcd')
+  'a,b,c,d'
+  ```
+  ```python
+  >>> ",".join(['a', 'b', 'c', 'd'])
+  'a,b,c,d'
+  ```
+  5. 소문자 > 대문자 (upper)
+  ```python
+  >>> a = "hi"
+  >>> a.upper()
+  'HI'
+  ```
+  6. 대문자 > 소문자 (lower)
+  ```python
+  >>> a = "HI"
+  >>> a.lower()
+  'hi'
+  ```
+  7. 왼쪽 공백 지우기 (lstrip)
+  ```python
+  >>> a = " hi "
+  >>> a.lstrip()
+  'hi '
+  ```
+  8. 오른쪽 공백 지우기 (rstrip)
+  ```python
+  >>> a = " hi "
+  >>> a.rstrip()
+  ' hi'
+  ```
+  9. 양쪽 공백 지우기 (strip)
+  ```python
+  >>> a = " hi "
+  >>> a.strip()
+  'hi'
+  ```
+  10. 문자열 바꾸기 (replace)
+  ```python
+  >>> a = "Life is too short."
+  >>> a.replace("Life", "Your leg")
+  'Your leg is too short.'
+  ```
+  11. 문자열 나누기 (split)
+  ```python
+  >>> a = "Life is too short."
+  >>> a.split()
+  ['Life', 'is', 'too', 'short']
+  ```
+  ```python
+  >>> a = "a:b:c:d"
+  >>> a.split(':')
+  ['a', 'b', 'c', 'd']
+  ```
++ 연습 문제
+  1. 문자열 출력 1
