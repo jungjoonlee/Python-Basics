@@ -887,6 +887,100 @@ else:
   [1, 3, 5]
   ```
 ---
-#### 02-4. ///
-+ ///
-  + ///
+#### 02-4. 튜플 자료형
++ 튜플(tuple) 형태
+```python
+>>> t1 = ()
+>>> t2 = (1,)
+>>> t3 = (1, 2, 3)
+>>> t4 = 1, 2, 3
+>>> t5 = ('a', 'b', ('ab', 'cd'))
+```
++ 튜플의 특징
+튜플의 요소값은 한 번 정하면 지우거나 변경할 수 없음
+  1. 튜플 요소값 삭제 시 오류
+  ```python
+  >>> t1 = (1, 2, 'a', 'b')
+  >>> del t1[0]
+  Traceback (most recent call last):
+    File "<stdin>', line 1, in <module"
+  TypeError: 'tuple' object doesn't support item deletion
+  ```
+  2. 튜플 요소값 변경 시 오류
+  ```python
+  >>> t1 = (1, 2, 'a', 'b')
+  >>> t1[0] = 'c'
+  Traceback (most recent call last):
+    File "<stdin>', line 1, in <module"
+  TypeError: 'tuple' object does not support item assignment
+  ```
++ 튜플의 인덱싱과 슬라이싱, 더하기(+)와 곱하기(*)
+  1. 인덱싱
+  ```python
+  >>> t1 = (1, 2, 'a', 'b')
+  >>> t1[0]
+  1
+  >>> t1[3]
+  'b'
+  ```
+  2. 슬라이싱
+  ```python
+  >>> t1 = (1, 2, 'a', 'b')
+  >>> t1[1:]
+  (2, 'a', 'b')
+  ```
+  3. 더하기
+  ```python
+  >>> t1 = (1, 2, 'a', 'b')
+  >>> t2 = (3, 4)
+  >>> t1 + t2
+  (1, 2, 'a', 'b', 3, 4)
+  ```
+  4. 곱하기
+  ```python
+  >>> t2 = (3, 4)
+  >>> t2 * 3
+  (3, 4, 3, 4, 3, 4)
+  ```
++ 연습 문제
+  1. 튜플 작성
+  ```python
+  >>> t1 = (3,)
+  >>> t1
+  (3,)
+  ```
+  ```python
+  >>> t1 = 3,
+  >>> t1
+  (3,)
+  ```
+  2. 튜플 변경
+  ```python
+  >>> a = (1, 2, 3)
+  >>> a[1] = 4
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  TypeError: 'tuple' object does not support item assignment
+  
+  # 튜플 자료형은 요소값 변경을 지원하지 않음
+  ```
+  3. 튜플 추가
+  ```python
+  >>> t1 = (1, 2, 3)
+  >>> t1 = t1 + (4,)
+  >>> t1
+  (1, 2, 3, 4)
+  ```
+  ```python
+  >>> t1 = (1, 2, 3)
+  >>> id(t1)
+  5751512
+  >>> t1 = t1 + (4,)
+  >>> t1
+  (1, 2, 3, 4)
+  >>> id(t1)
+  5728896
+  ```
+---
+#### 02-5. 딕셔너리 자료형
++ //
