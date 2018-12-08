@@ -983,4 +983,217 @@ else:
   ```
 ---
 #### 02-5. 딕셔너리 자료형
++ 딕셔너리 작성법
+```python
+>>> dic = {'name':'pey', 'phone':'0119993323', 'birth':'1118'}
+>>> a = {1: 'hi'}
+>>> a = {'a': [1, 2, 3]}
+```
++ 딕셔너리 요소 추가 & 삭제
+  1. 추가
+  ```python
+  >>> a = {1: 'a'}
+  >>> a[2] = 'b'
+  >>> a
+  {1: 'a', 2: 'b'}
+  >>> a['name'] = 'pey'
+  >>> a
+  {1: 'a', 2: 'b', 'name': 'pey'}
+  >>> a[3] = [1, 2, 3]
+  >>> a
+  {1: 'a', 2: 'b', 'name': 'pey', 3: [1, 2, 3]}
+  ```
+  2. 삭제
+  ```python
+  >>> del a[1]
+  >>> a
+  {2: 'b', 'name': 'pey', 3: [1, 2, 3]}
+  ```
++ 딕셔너리 활용법
+  1. Key 사용해 Value 얻기
+  ```python
+  >>> grade = {'pey': 10, 'julliet': 99}
+  >>> grade['pey']
+  10
+  >>> grade['julliet']
+  99
+  ```
+  ```python
+  >>> a = {1: 'a', 2: 'b'}
+  >>> a[1]
+  'a'
+  >>> a[2]
+  'b'
+  ```
+  ```python
+  >>> a = {'a': 1, 'b': 2}
+  >>> a['a']
+  1
+  >>> a['b']
+  2
+  ```
+  ```python
+  >>> dic = {'name': 'pey', 'phone': '0119993323', 'birth': '1118'}
+  >>> dic['name']
+  'pey'
+  >>> dic['phone']
+  '0119993323'
+  >>> dic['birth']
+  '1118'
+  ```
+  2. 작성 시 주의사항
+  ```python
+  # Dictionary Key는 고유한 값이므로, 중복 설정 시 하나를 제외한 나머지 Value는 모두 무시된다.
+  
+  >>> a = {1: 'a', 1: 'b'}
+  >>> a
+  {1: 'b'}
+  ```
+  ```python
+  # 특정 자료형의 Dictionary Key 사용 가능 여부는 해당 자료형이 변하는 값인지, 변하지 않는 값인지에 달려있다.
+  # 그에 따라 리스트, 딕셔너리는 Key로 쓸 수 없는 반면, 튜플은 Key로 사용할 수 있다.
+  
+  >>> a  {[1, 2] : 'hi'}
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  TypeError: unhashable type: 'list'
+  ```
++ 딕셔너리 관련 함수
+  1. Key 리스트 만들기 (keys)
+  ```python
+  >>> a = {'name': 'pey', 'phone': '0119993323', 'birth': '1118'}
+  >>> a.keys()
+  dict_keys(['name', 'phone', 'birth'])
+  ```
+  ```python
+  >>> for k in a.keys():
+  ...   print(k)
+  ...
+  name
+  phone
+  birth
+  ```
+  ```python
+  >>> list(a.keys())
+  ['name', 'phone', 'birth']
+  ```
+  2. Value 리스트 만들기 (values)
+  ```python
+  >>> a = {'name': 'pey', 'phone': '0119993323', 'birth': '1118'}
+  >>> a.values()
+  dict_values(['pey', '0119993323', '1118'])
+  ```
+  3. Key, Value 쌍 얻기 (items)
+  ```python
+  >>> a = {'name': 'pey', 'phone': '0119993323', 'birth': '1118'}
+  >>> a.items()
+  dict_items([('name', 'pey'), ('phone', '0119993323'), ('birth', '1118')])
+  ```
+  4. Key: Value 쌍 모두 지우기 (clear)
+  ```python
+  >>> a = {'name': 'pey', 'phone': '0119993323', 'birth': '1118'}
+  >>> a.clear()
+  >>> a
+  {}
+  ```
+  5. Key로 Value 얻기 (get)
+  ```python
+  >>> a = {'name': 'pey', 'phone': '0119993323', 'birth': '1118'}
+  >>> a.get('name')
+  'pey'
+  >>> a.get('phone')
+  '0119993323'
+  ```
+  ```python
+  >>> a = {'name': 'pey', 'phone': '0119993323', 'birth': '1118'}
+  >>> a.get('nokey')
+  >>> a['nokey']
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  KeyError: 'nokey'
+  ```
+  ```python
+  >>> a.get('foo', 'bar')
+  'bar'
+  ```
+  6. 해당 Key가 딕셔너리 안에 있는지 조사하기 (in)
+  ```python
+  >>> a = {'name': 'pey', 'phone': '0119993323', 'birth': '1118'}
+  >>> 'name' in a
+  True
+  >>> 'email' in a
+  False
+  ```
++ 연습 문제
+  1. 딕셔너리 만들기
+  ```python
+  >>> a = {'name': '홍길동', 'birth': '1128', 'age': 30}
+  >>> a
+  {'name': '홍길동', 'birth': '1128', 'age': 30}
+  ```
+  ```python
+  >>> a = dict()
+  >>> a['name'] = '홍길동'
+  >>> a['birth'] = '1128'
+  >>> a['age'] = 30
+  >>> a
+  {'name': '홍길동', 'birth': '1128', 'age': 30}
+  ```
+  2. 딕셔너리 오류
+  ```python
+  >>> a = dict()
+  >>> a
+  {}
+  
+  # 오류가 발생하는 경우와 이유
+  # a['name'] = 'python' > 작동
+  # a[('a',)] = 'python' > 작동
+  # a[[1]] = 'python' > 형 오류(TypeError) 발생, 리스트는 값이 변하는(mutable) 자료형이므로 Key로 사용할 수 없음.  
+  # a[250] = 'python' > 작동
+  ```
+  3. 딕셔너리 값 추출1
+  ```python
+  >>> a = {'A': 90, 'B': 80, 'C': 70}
+  >>> a.get('B')
+  80
+  >>> del a['B']
+  >>> a
+  {'A': 90, 'C': 70}
+  ```
+  ```python
+  >>> a = {'A': 90, 'B': 80, 'C': 70}
+  >>> result = a.pop('B')
+  >>> print(a)
+  {'A': 90, 'C': 70}
+  >>> print(result)
+  80
+  ```  
+  4. 딕셔너리 값 추출2
+  ```python
+  >>> a = {'A': 90, 'B': 80}
+  >>> a['C']
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  KeyError: 'C'
+  ```
+  ```python
+  >>> a = {'A': 90, 'B': 80}
+  >>> a.get('C', 70)
+  70
+  ```
+  5. 딕셔너리 최소값
+  ```python
+  >>> a = {'A': 90, 'B': 80, 'C': 70}
+  >>> min(a.values())
+  70
+  ```
+  6. 딕셔너리 리스트 변환
+  ```python
+  >>> a = {'A': 90, 'B': 80, 'C': 70}
+  >>> a = list(a.items())
+  >>> a
+  [('A', 90), ('B', 80), ('C', 70)]
+  ```
+---
+#### 02-6. 집합 자료형
 + //
