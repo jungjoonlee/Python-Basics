@@ -1413,3 +1413,32 @@ True
 ```
 + 연습 문제
   1. 불 자료형과 조건문
+  ```python
+  >>> 1 != 1
+  False
+  >>> 3 > 1
+  True
+  >>> 'a' in 'abc'
+  True
+  >>> 'a' not in [1, 2, 3]
+  True
+  ```
+  2. bool 연산자
+  ```python
+  >>> a = "python"
+  >>> b = ""
+  >>> c = (1, 2 ,3)
+  >>> d = 0
+  >>> bool(a)
+  True
+  >>> bool(b)
+  False
+  >>> bool(c)
+  True
+  >>> bool(d)
+  False
+  ```
+---
+#### 02-8. 자료형의 값을 저장하는 공간, 변수
++ //
+  
