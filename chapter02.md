@@ -1343,4 +1343,73 @@ else:
   ```
 ---
 #### 02-7. 불 자료형
-+ //
++ 불 자료형이란?
+```python
+>>> a = True
+>>> b = False
+```
+```python
+>>> 1 == 1
+True
+>>> 2 > 1
+True
+>>> 2 < 1
+False
+```
++ 자료형의 참과 거짓
+|값|참 or 거짓|
+|---
+|"python"|참|
+|""|거짓|
+|[1, 2, 3]|참|
+|[]|거짓|
+|()|거짓|
+|{}|거짓|
+|1|참|
+|0|거짓|
+|None|거짓|
+```python
+>>> a = [1, 2, 3, 4]
+>>> while a:
+...     print(a.pop())
+...
+4
+3
+2
+1
+```
+```python
+>>> if []:
+...     print("참")
+... else:
+...     print("거짓")
+...
+거짓
+```
+```python
+>>> if [1, 2, 3]:
+...     print("참")
+... else:
+...     print("거짓")
+...
+참
+```
++ 불 연산
+```python
+>>> bool('python')
+True
+>>> bool('')
+False
+```
+```python
+>>> bool([1, 2, 3])
+True
+>>> bool([])
+False
+>>> bool(0)
+False
+>>> bool(3)
+True
+```
++ 연습 문제
+  1. 불 자료형과 조건문
