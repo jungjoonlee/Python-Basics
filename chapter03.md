@@ -26,37 +26,37 @@ else:
     수행할 문장B
     ...
 ```
-++ 들여쓰기
-```python
-# 들여쓰기 누락 시 오류 발생
-if 조건문:
-    수행할 문장1
-    수행할 문장2
-    수행할 문장3
-```
-```python
-# 오류 예시1
->>> money = 1
->>> if money:
-...     print("택시를")
-... print("타고")
-  File "<stdin>", line 3
-    print("타고")
+    1. 들여쓰기
+    ```python
+    # 들여쓰기 누락 시 오류 발생
+    if 조건문:
+        수행할 문장1
+        수행할 문장2
+        수행할 문장3
+    ```
+    ```python
+    # 오류 예시1
+    >>> money = 1
+    >>> if money:
+    ...     print("택시를")
+    ... print("타고")
+      File "<stdin>", line 3
+        print("타고")
+            ^
+    SyntaxError: invalid syntax
+    ```
+    ```python
+    # 오류 예시2
+    >>> money = 1
+    >>> if money:
+    ...     print("택시를")
+    ...     print("타고")
+    ...         print("가자")
+      File "<stdin>", line 4
+        print("가자")
         ^
-SyntaxError: invalid syntax
-```
-```python
-# 오류 예시2
->>> money = 1
->>> if money:
-...     print("택시를")
-...     print("타고")
-...         print("가자")
-  File "<stdin>", line 4
-    print("가자")
-    ^
-IndentationError: unexpected indent
-```
+    IndentationError: unexpected indent
+    ```
 + 조건문이란 무엇인가?
 "조건문"이란 참과 거짓을 판단하는 문장
   1. 비교연산자
@@ -273,5 +273,173 @@ else:
   shirt
   ```
 ---
-#### 03-2. //
-+ //
+#### 03-2. while문
++ while문의 기본 구조
+```python
+while <조건문>:
+    <수행할 문장1>
+    <수행할 문장2>
+    <수행할 문장3>
+    ...
+```
+```python
+# while문 예시
+>>> treeHit = 0
+>>> while treeHit < 10:
+...     treeHit = treeHit + 1
+...     print("나무를 %d번 찍었습니다." % treeHit)
+...     if treeHit == 10:
+...         print("나무 넘어갑니다.")
+...
+나무를 1번 찍었습니다.
+나무를 2번 찍었습니다.
+나무를 3번 찍었습니다.
+나무를 4번 찍었습니다.
+나무를 5번 찍었습니다.
+나무를 6번 찍었습니다.
+나무를 7번 찍었습니다.
+나무를 8번 찍었습니다.
+나무를 9번 찍었습니다.
+나무를 10번 찍었습니다.
+나무 넘어갑니다.
+```
++ while문 직접 만들기
+```python
+>>> prompt = """
+... 1. Add
+... 2. Del
+... 3. List
+... 4. Quit
+...
+... Enter number: """
+>>>
+```
+```python
+>>> number = 0
+>>> while number != 4:
+...     print(prompt)
+...     number = int(input())
+...
+
+1. Add
+2. Del
+3. List
+4. Quit
+
+Enter number:
+```
+```python
+Enter number:
+1
+
+1. Add
+2. Del
+3. List
+4. Quit
+
+Enter number:
+```
+```python
+Enter number:
+4
+>>>
+```
++ while문 강제로 빠져나가기
+```python
+>>> coffee = 10
+>>> money = 300
+>>> while money:
+...     print("돈을 받았으니 커피를 줍니다.")
+...     coffee = coffee - 1
+...     print("남은 커피의 양은 %d개입니다." % coffee)
+...     if not coffee:
+...         print("커피가 다 떨어졌습니다. 판매를 중지합니다.")
+...         break
+...
+돈을 받았으니 커피를 줍니다.
+남은 커피의 양은 9개입니다.
+돈을 받았으니 커피를 줍니다.
+남은 커피의 양은 8개입니다.
+돈을 받았으니 커피를 줍니다.
+남은 커피의 양은 7개입니다.
+돈을 받았으니 커피를 줍니다.
+남은 커피의 양은 6개입니다.
+돈을 받았으니 커피를 줍니다.
+남은 커피의 양은 5개입니다.
+돈을 받았으니 커피를 줍니다.
+남은 커피의 양은 4개입니다.
+돈을 받았으니 커피를 줍니다.
+남은 커피의 양은 3개입니다.
+돈을 받았으니 커피를 줍니다.
+남은 커피의 양은 2개입니다.
+돈을 받았으니 커피를 줍니다.
+남은 커피의 양은 1개입니다.
+돈을 받았으니 커피를 줍니다.
+남은 커피의 양은 0개입니다.
+커피가 다 떨어졌습니다. 판매를 중지합니다.
+```
+    1. break문을 이용해 자판기 작동 과정 만들기
+    ```python
+    # coffee.py
+    
+    coffee = 10
+    while True:
+        money = int(input("돈을 넣어 주세요: "))
+        if money == 300:
+            print("커피를 줍니다.")
+            coffee = coffee - 1
+        elif money > 300:
+            print("거스름돈 %d원을 주고 커피를 줍니다." % (money - 300))
+            coffee = coffee - 1
+        else:
+            print("돈을 다시 돌려주고 커피를 주지 않습니다.")
+            print("남은 커피의 양은 %d개입니다." % coffee)
+        if not coffee:
+            print("커피가 다 떨어졌습니다. 판매를 중지합니다.")
+            break
+    ```
+    ```python
+    # coffee.py 실행 결과
+    돈을 넣어 주세요: 500
+    거스름돈 200원을 주고 커피를 줍니다.
+    돈을 넣어 주세요: 300
+    커피를 줍니다.
+    돈을 넣어 주세요: 100
+    돈을 다시 돌려주고 커피를 주지 않습니다.
+    남은 커피의 양은 8개입니다.
+    돈을 넣어 주세요: 
+    ```
++ while문의 맨 처음으로 돌아가기
+```python
+>>> a = 0
+>>> while a < 10:
+...     a = a + 1
+...     if a % 2 == 0: continue
+...     print(a)
+...
+1
+3
+5
+7
+9
+```
++ 무한 루프
+```python
+# 무한 루프 예시
+>>> while True:
+...     print("Ctrl+C를 눌러야 while문을 빠져나갈 수 있습니다.")
+...
+Ctrl+C를 눌러야 while문을 빠져나갈 수 있습니다.
+Ctrl+C를 눌러야 while문을 빠져나갈 수 있습니다.
+Ctrl+C를 눌러야 while문을 빠져나갈 수 있습니다.
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+KeyboardInterrupt
+```
++ 연습문제
+    1. 
+    
+    
+    
+
+
