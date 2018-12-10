@@ -217,8 +217,6 @@ else:
   ```python
   >>> money = 5000
   >>> card = False
-  ```
-  ```python
   >>> if money >= 4000 or card:
   ...     print("택시를 탈 수 있다")
   ... else:
@@ -228,20 +226,17 @@ else:
   ```
   2. 조건문2
   ```python
+  >>> hong_number = 23
   >>> lucky_list = [1, 9, 23, 46]
-  ```
-  ```python
-  >>> if 23 in lucky_list:
+  >>> if hong_number in lucky_list:
   ...     print("야호")
-  ... else:
-  ...     print("다음 기회에")
   ...
   야호
   ```
   3. 홀수 짝수 판별
   ```python
-  >>> x = 2
-  >>> if x % 2 == 0:
+  >>> num = 2  # num은 주어진 수
+  >>> if num % 2 == 0:
   ...     print("짝수")
   ... else:
   ...     print("홀수")
@@ -250,12 +245,11 @@ else:
   ```
   4. 문자열 분석
   ```python
-  >>> 나이:30,키:180
-  ```
-  ```python
-  >>> 나이 = 30
-  >>> 키 = 180
-  >>> if 나이 < 30 and 키 >= 175:
+  >>> a = "나이:30,키:180"
+  >>> temp = a.split(",")
+  >>> age = temp[0].split(":")[-1]  # '30'
+  >>> height = temp[1].split(":")[-1]  # '180'
+  >>> if int(age) < 30 and int(height) >= 175:
   ...     print("YES")
   ... else:
   ...     print("NO")
@@ -265,13 +259,13 @@ else:
   5. 조건문3
   ```python
   >>> a = "Life is too short, you need python"
-  >>> if 'wife' in a:
+  >>> if 'wife' in a:  # False
   ...     print('wife')
-  ... elif 'python' in a and 'you' not in a:
+  ... elif 'python' in a and 'you' not in a:  # False
   ...     print('python')
-  ... elif 'shirt' not in a:
+  ... elif 'shirt' not in a:  # True
   ...     print('shirt')
-  ... elif 'need' in a:
+  ... elif 'need' in a:  # True
   ...     print('need')
   ... else:
   ...     print('none')
@@ -279,3 +273,5 @@ else:
   shirt
   ```
 ---
+#### 03-2. //
++ //
