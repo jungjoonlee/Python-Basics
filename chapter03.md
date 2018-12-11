@@ -378,10 +378,9 @@ Enter number:
 남은 커피의 양은 0개입니다.
 커피가 다 떨어졌습니다. 판매를 중지합니다.
 ```
-    1. break문을 이용해 자판기 작동 과정 만들기
+  1. break문을 이용해 자판기 작동 과정 만들기 
     ```python
     # coffee.py
-    
     coffee = 10
     while True:
         money = int(input("돈을 넣어 주세요: "))
