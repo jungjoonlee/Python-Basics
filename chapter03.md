@@ -557,4 +557,246 @@ KeyboardInterrupt
   ```
 ---
 #### 03-3. for문
-+ //
++ for문의 기본 구조
+```python
+for 변수 in 리스트(또는 튜플, 문자열):
+    수행할 문장1
+    수행할 문장2
+    ...
+```
+```python
+# 예시1 - 전형적인 for문
+>>> test_list = ['one', 'two', 'three']
+>>> for i in test_list:
+...     print(i)
+...
+one
+two
+three
+```
+```python
+# 예시2 - 다양한 for문의 사용
+>>> a = [(1, 2), (3, 4), (5, 6)]
+>>> for (first, last) in a:
+...     print(first + last)
+...
+3
+7
+11
+```
+```python
+# 예시3 - for문 응용
+"총 5명의 학생이 시험을 보았는데 시험 점수가 60점이 넘으면 합격이고 그렇지 않으면 불합격이다. 합격인지 불합격인지 결과를 보여주시오."
+```
+```python
+# marks1.py
+marks = [90, 25, 67, 45, 80]
+
+number = 0
+for mark in marks:
+    number = number + 1
+    if mark >= 60:
+        print("%d번 학생은 합격입니다." % number)
+    else:
+        print("d%번 학생은 불합격입니다." % number)
+```
+```python
+# marks1.py 실행 결과
+1번 학생은 합격입니다.
+2번 학생은 불합격입니다.
+3번 학생은 합격입니다.
+4번 학생은 불합격입니다.
+5번 학생은 합격입니다.
+```
++ for문과 continue
+```python
+# marks2.py
+marks = [90, 25, 67, 45, 80]
+
+number = 0
+for mark in marks:
+    number = number + 1
+    if mark < 60: continue
+    print("%d번 학생 축하합니다. 합격입니다." % number)
+```
+```python
+# marks2.py 실행 결과
+1번 학생 축하합니다. 합격입니다.
+3번 학생 축하합니다. 합격입니다.
+5번 학생 축하합니다. 합격입니다.
+```
++ for와 함께 자주 사용하는 range함수
+  1. range함수 사용법
+  ```python
+  >>> a = range(10)
+  >>> a
+  range(0, 10)
+  >>> a = range(1, 11)
+  >>> a
+  range(1, 11)
+  ```
+  2. range함수 예시
+  ```python
+  >>> sum = 0
+  >>> for i in range(1, 11):
+  ...     sum = sum + i
+  ...
+  >>> print(sum)
+  55
+  ```
+  ```python
+  # marks3.py
+  marks = [90, 25, 67, 45, 80]
+  for number in range(len(marks)):
+      if marks[number] < 60: continue
+      print("%d번 학생 축하합니다. 합격입니다." % (number + 1))
+  ```
+  ```python
+  # marks3.py 실행 결과
+  1번 학생 축하합니다. 합격입니다.
+  3번 학생 축하합니다. 합격입니다.
+  5번 학생 축하합니다. 합격입니다.
+  ```
+  3. for와 range를 이용한 구구단
+  ```python
+  >>> for i in range(2, 10):
+  ...     for j in range(1, 10):
+  ...         print(i * j, end = " ")  # 입력 인수 end를 넣음으로써 결과값 출력 시 다음 줄로 넘어가지 않고 해당 줄에 계속해서 결과값 출력.
+  ...     print('')  # 2단, 3단 등을 구분하기 위해 두 번째 for문이 끝나면 결과값을 다음 줄부터 출력하게 해주는 문장.
+  ...
+  2 4 6 8 10 12 14 16 18
+  3 6 9 12 15 18 21 24 27
+  4 8 12 16 20 24 28 32 36
+  5 10 15 20 25 30 35 40 45
+  6 12 18 24 30 36 42 48 54
+  7 14 21 28 35 42 49 56 63
+  8 16 24 32 40 48 56 64 72
+  9 18 27 36 45 54 63 72 81
+  ```
++ 리스트 안에 for문 포함하기
+```python
+>>> a = [1, 2, 3, 4]
+>>> result = []
+>>> for num in a:
+...     result.append(num*3)
+...
+>>> print(result)
+[3, 6, 9, 12]
+```
+```python
+# 리스트 내포(List comprehension)의 일반적인 문법
+[표현식 for 항목 in 반복가능객체 if 조건]
+```
+```python
+# 리스트 내포(List comprehension) 예시1
+>>> a = [1, 2, 3, 4]
+>>> result = [num * 3 for num in a]
+>>> print(result)
+[3, 6, 9, 12]
+```
+```python
+# 리스트 내포(List comprehension) 예시2
+>>> a = [1, 2, 3, 4]
+>>> result = [num * 3 for num in a if num % 2 == 0]
+>>> print(result)
+[6, 12]
+```
+```python
+# for문을 여러 개 사용할 경우의 문법
+[표현식 for 항목1 in 반복가능객체1 if 조건1
+        for 항목2 in 반복가능객체2 if 조건2
+        ...
+        for 항목n in 반복가능객체n if 조건n]
+```
+```python
+# for문을 여러 개 사용한 예시 - 구구단
+>>> result = [x * y for x in range(2, 10)
+...                 for y in range(1, 10)]
+>>> print(result)
+[2, 4, 6, 8, 10, 12, 14, 16, 18, 3, 6, 9, 12, 15, 18, 21, 24, 27, 4, 8, 12, 16, 20, 24, 28, 32, 36, 5, 10, 15, 20, 25, 30, 35, 40, 45, 6, 12, 18, 24, 30, 36, 42, 48, 54, 7, 14, 21, 28, 35, 42, 49, 56, 63, 8, 16, 24, 32, 40, 48, 56, 64, 72, 9, 18, 27, 36, 45, 54, 63, 72, 81]
+```
++ 연습문제
+  1. 1부터 100까지 출력
+  ```python
+  >>> i = 1
+  >>> for i in range(1, 101):
+  ...     print(i)
+  ...
+  1
+  2
+  3
+  ...
+  98
+  99
+  100
+  ```
+  2. 5의 배수의 총합
+  ```python
+  >>> sum = 0
+  >>> for i in range(1, 1001):
+  ...     if i % 5 == 0: 
+  ...         sum = sum + i
+  ...
+  >>> print(sum)
+  100500
+  ```
+  3. 학급의 평균 점수
+  ```python
+  >>> A = [70, 60, 55, 75, 95, 90, 80, 80, 85, 100]
+  >>> sum = 0
+  >>> for i in A:
+  ...     sum = sum + i
+  ...
+  >>> print(sum / len(A))
+  79.0
+  ```
+  4. 혈액형
+  ```python
+  >>> BloodType = ['A', 'B', 'A', 'O', 'AB', 'AB', 'O', 'A', 'B', 'O', 'B', 'AB']
+  >>> sumA = 0
+  >>> sumB = 0
+  >>> sumO = 0
+  >>> sumAB = 0
+  >>> for i in BloodType:
+  ...     if i == 'A':
+  ...         sumA = sumA + 1
+  ...     if i == 'B':
+  ...         sumB = sumB + 1
+  ...     if i == 'O':
+  ...         sumO = sumO + 1
+  ...     if i == 'AB':
+  ...         sumAB = sumAB + 1
+  ...
+  >>> print(sumA)
+  3
+  >>> print(sumB)
+  3
+  >>> print(sumO)
+  3
+  >>> print(sumAB)
+  3
+  ```
+  5. 리스트 내포1
+  ```python
+  >>> numbers = [1, 2, 3, 4, 5]
+  >>> result = []
+  >>> for n in numbers:
+  ...     if n % 2 == 1:
+  ...         result.append(n * 2)
+  ...
+  >>> print(result)
+  [2, 6, 10]
+  ```
+  ```python
+  >>> result = [n * 2 for n in numbers if n % 2 == 1]
+  >>> print(result)
+  [2, 6, 10]
+  ```
+  6. 리스트 내포2
+  ```python
+  >>> A = 'Life is too short, you need python'
+  >>> B = 'aeiou'
+  >>> result = [i for i in list(A) if i not in B]
+  >>> print(" ".join(result))
+  L f   s t   sh rt, y   n  d pyth n
+  ```
