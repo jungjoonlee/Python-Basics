@@ -436,9 +436,125 @@ Traceback (most recent call last):
 KeyboardInterrupt
 ```
 + 연습문제
-    1. 
-    
-    
-    
-
-
+  1. 1부터 100까지 더하기
+  ```python
+  >>> result = 0
+  >>> i = 1
+  >>> while i <= 100:
+  ...     result += i
+  ...     i += 1
+  ...
+  >>> print(result)
+  5050
+  ```
+  2. 3의 배수의 합
+  ```python
+  >>> result = 0
+  >>> i = 0
+  >>> while i <= 1000:
+  ...     i += 1
+  ...     if i % 3 != 0: continue
+  ...     result += i
+  ...
+  >>> print(result)
+  166833
+  ```
+  ```python
+  # 교재 풀이
+  >>> result = 0
+  >>> i = 1
+  >>> while i <= 1000:
+  ...     if i % 3 == 0:
+  ...         result += i
+  ...     i += 1
+  ...
+  >>> print(result)
+  166833
+  ```
+  3. 50점 이상의 총합
+  ```python
+  >>> A = [20, 55, 67, 82, 45, 33, 90, 87, 100, 25]
+  >>> result = 0
+  >>> i = 0
+  >>> while i < 10:
+  ...     if A[i] < 50:
+  ...         i += 1
+  ...         continue
+  ...     result += A[i]
+  ...     i += 1
+  ...
+  >>> print(result)
+  481
+  ```
+  ```python
+  # 교재 풀이
+  >>> A = [20, 55, 67, 82, 45, 33, 90, 87, 100, 25]
+  >>> result = 0
+  >>> while A:
+  ...     mark = A.pop()
+  ...     if mark >= 50:
+  ...         result += mark
+  ...
+  >>> print(result)
+  481
+  ```
+  4. 별 표시하기1
+  ```python
+  >>> i = 1
+  >>> while i < 5:
+  ...     a = '*'
+  ...     a = a * i
+  ...     print(a)
+  ...     i += 1
+  ...
+  *
+  **
+  ***
+  ****
+  ```
+  ```python
+  # 교재 풀이
+  >>> i = 0
+  >>> while True:
+  ...     i += 1
+  ...     if i > 4: break
+  ...     print('*' * i)
+  ...
+  *
+  **
+  ***
+  ****
+  ```
+  5. 별 표시하기2
+  ```python
+  >>> i = 4
+  >>> while i > 0:
+  ...     a = '*'
+  ...     b = ' '
+  ...     a = a * ((i * 2) - 1)
+  ...     b = b * (4 - i)
+  ...     print(b + a + b)
+  ...     i -= 1
+  ...
+  *******
+   ***** 
+    ***
+     *
+  ```
+  ```python
+  # 교재 풀이
+  >>> star = 7
+  >>> space = 0
+  >>> while star > 0:
+  ...     print(' ' * space + '*' * star)
+  ...     star -= 2
+  ...     space += 1
+  ...
+  *******
+   *****
+    ***
+     *
+  ```
+---
+#### 03-3. for문
++ //
