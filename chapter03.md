@@ -718,7 +718,6 @@ for mark in marks:
 + 연습문제
   1. 1부터 100까지 출력
   ```python
-  >>> i = 1
   >>> for i in range(1, 101):
   ...     print(i)
   ...
@@ -743,11 +742,12 @@ for mark in marks:
   3. 학급의 평균 점수
   ```python
   >>> A = [70, 60, 55, 75, 95, 90, 80, 80, 85, 100]
-  >>> sum = 0
-  >>> for i in A:
-  ...     sum = sum + i
+  >>> total = 0
+  >>> for score in A:
+  ...     total += score
   ...
-  >>> print(sum / len(A))
+  >>> average = total / len(A)
+  >>> print(average)
   79.0
   ```
   4. 혈액형
@@ -776,6 +776,19 @@ for mark in marks:
   >>> print(sumAB)
   3
   ```
+  ```python
+  # 교재 풀이
+  >>> data = ['A', 'B', 'A', 'O', 'AB', 'AB', 'O', 'A', 'B', 'O', 'B', 'AB']
+  >>> result = {}
+  >>> for blood_type in data:
+  ...     if blood_type in result:
+  ...         result[blood_type] += 1
+  ...     else:
+  ...         result[blood_type] = 1
+  ...
+  >>> print(result)
+  {'A': 3, 'B': 3, 'O': 3, 'AB': 3}
+  ```
   5. 리스트 내포1
   ```python
   >>> numbers = [1, 2, 3, 4, 5]
@@ -788,6 +801,7 @@ for mark in marks:
   [2, 6, 10]
   ```
   ```python
+  >>> numbers = [1, 2, 3, 4, 5]
   >>> result = [n * 2 for n in numbers if n % 2 == 1]
   >>> print(result)
   [2, 6, 10]
@@ -796,7 +810,14 @@ for mark in marks:
   ```python
   >>> A = 'Life is too short, you need python'
   >>> B = 'aeiou'
-  >>> result = [i for i in list(A) if i not in B]
-  >>> print(" ".join(result))
+  >>> result = [i for i in A if i not in B]
+  >>> print(' '.join(result))
   L f   s t   sh rt, y   n  d pyth n
+  ```
+  ```python
+  # 교재 풀이
+  >>> vowels = 'aeiou'
+  >>> sentence = 'Life is too short, you need python'
+  >>> ' '.join([a for a in sentence if a not in vowels])
+  'L f   s t   sh rt, y   n  d pyth n'
   ```
