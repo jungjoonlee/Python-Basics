@@ -521,3 +521,80 @@ lambda 매개변수1, 매개변수2, ... : 매개변수를 이용한 표현식
   ```
 + 연습문제
   1. 두 수의 합은?
+  ```python
+  input1 = input("첫번째 숫자를 입력하세요: ")
+  input2 = input("두번째 숫자를 입력하세요: ")
+  
+  total = input1 + input2
+  print("두 수의 합은 %s 입니다." % total)
+  ```
+  ```python
+  # 프로그램 실행 결과
+  첫번째 숫자를 입력하세요: 3
+  두번째 숫자를 입력하세요: 6
+  두 수의 합은 36 입니다  # 9가 아닌 36 리턴
+  ```
+  ```python
+  # 프로그램 오류 수정
+  input1 = input("첫번째 숫자를 입력하세요: ")
+  input2 = input("두번째 숫자를 입력하세요: ")
+  
+  total = int(input1) + int(input2)
+  print("두 수의 합은 %d 입니다." % total)
+  ```
+  ```python
+  # 프로그램 실행 결과
+  첫번째 숫자를 입력하세요: 3
+  두번째 숫자를 입력하세요: 6
+  두 수의 합은 9 입니다.
+  ```
+  2. 숫자의 총합
+  ```python
+  number = input("숫자를 입력하세요: ")
+  
+  number_list = number.split(',')
+  total = 0
+  for i in number_list:
+      total += int(i)
+  
+  print("숫자들의 총합은 %d입니다." % total)
+  ```
+  ```python
+  # 프로그램 실행 결과
+  숫자를 입력하세요: 65,45,2,3,45,8
+  숫자들의 총합은 168 입니다.
+  ```
+  3. 문자열 출력
+  ```python
+  # 3번이 출력결과가 다름
+  >>> print("you", "need", "python")
+  you need python
+  # 1, 2, 4번은 출력결과가 동일함
+  >>> print("you" "need" "python")  # 1번
+  youneedpython
+  >>> print("you"+"need"+"python")  # 2번
+  youneedpython
+  >>> print("".join(["you", "need", "python"]))
+  youneedpython
+  ```
+  4. 한줄 구구단
+  ```python
+  n = input("구구단을 출력할 숫자를 입력하세요(2~9): ")
+  for i in range(1, 10):
+      print(int(n) * i, end=' ')
+  ```
+  ```python
+  # 교재 풀이
+  user_input = input("구구단을 출력할 숫자를 입력하세요(2~9): ")
+  dan = int(user_input)
+  for i in range(1, 10):
+      print(i*dan, end=' ')
+  ```
+  ```python
+  # 프로그램 실행 결과
+  구구단을 출력할 숫자를 입력하세요(2~9): 2
+  2 4 6 8 10 12 14 16 18
+  ```
+---
+#### 04-3. 파일 읽고 쓰기
++ //
