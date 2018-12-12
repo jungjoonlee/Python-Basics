@@ -362,4 +362,118 @@ lambda 매개변수1, 매개변수2, ... : 매개변수를 이용한 표현식
 12
 ```
 + 연습문제
-  1. 
+  1. 홀수 짝수 판별
+  ```python
+  >>> def is_odd(a):
+  ...     if a % 2 == 0:
+  ...         print("%d는(은) 짝수이다." % a)
+  ...     else:
+  ...         print("%d는(은) 홀수이다." % a)
+  ...
+  >>> is_odd(3)
+  3는(은) 홀수이다.
+  >>> is_odd(4)
+  4는(은) 짝수이다.
+  ```
+  ```python
+  # 교재 풀이1
+  >>> def is_odd(number):
+  ...     if number % 2 == 1:
+  ...         return True
+  ...     else:
+  ...         return False
+  ...
+  >>> is_odd(3)
+  True
+  >>> is_odd(4)
+  False
+  ```
+  ```python
+  # 교재 풀이2
+  >>> is_odd = lambda number: True if number % 2 ==1 else False
+  >>> is_odd(3)
+  True
+  ```
+  2. 평균값 계산
+  ```python
+  >>> def avg_numbers(*args):
+  ...     result = 0
+  ...     for i in args:
+  ...         result += i
+  ...     return result / len(args)
+  ...
+  >>> avg_numbers(1, 2)
+  1.5
+  >>> avg_numbers(1, 2, 3, 4, 5)
+  3.0
+  ```
+  3. 구구단 출력
+  ```python
+  >>> def multiplication(n):
+  ...     N = []
+  ...     for i in range(1, 10):
+  ...         N.append(i * n)
+  ...     return N
+  ...
+  >>> multiplication(2)
+  [2, 4, 6, 8, 10, 12, 14, 16, 18]
+  ```
+  ```python
+  # 교재 풀이
+  ```python
+  >>> def gugu(n):
+  ...     for i in range(1, 10):
+  ...         print(n * i)
+  ...
+  >>> gugu(2)
+  2
+  4
+  6
+  8
+  10
+  12
+  14
+  16
+  18
+  ```
+  4. 피보나치
+  ```python
+  def fib(n):
+      if n == 0 : return 0
+      if n == 1 : return 1
+      return fib(n-2) + fib(n-1)
+  
+  for i in range(10):
+      print(fib(i))
+  0
+  1
+  1
+  2
+  3
+  5
+  8
+  13
+  21
+  34
+  ```
+  5. 5보다 큰 수만
+  ```python
+  >>> def myfunc(numbers):
+  ...     result = []
+  ...     for number in numbers:
+  ...         if number > 5:
+  ...             result.append(number)
+  ...     return result
+  ...
+  >>> myfunc([2, 3, 4, 5, 6, 7, 8])
+  [6, 7, 8]
+  ```
+  ```python
+  # 위 함수를 lambda 함수로 변경
+  >>> myfunc = lambda numbers: [number for number in numbers if number > 5]
+  >>> myfunc([2, 3, 4, 5, 6, 7, 8])
+  [6, 7, 8]
+  ```
+---
+#### 04-2. 사용자 입력과 출력
++ //
