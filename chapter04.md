@@ -237,3 +237,129 @@ def 함수이름(*매개변수):
   >>>
   ```
 + 매개변수에 초깃값 미리 설정하기
+```python
+def say_myself(name, old, man=True):
+    print("나의 이름은 %s입니다." % name)
+    print("나이는 %d살입니다." % old)
+    if man:
+        print("남자입니다.")
+    else:
+        print("여자입니다.")
+```
+```python
+say_myself("박응용", 27)
+say_myself("박응용", 27, True)
+# 두 가지 방법 모두 동일한 결과 출력
+나의 이름은 박응용입니다.
+나이는 27살입니다.
+남자입니다.
+나의 이름은 박응용입니다.
+나이는 27살입니다.
+남자입니다.
+```
+```python
+say_myself("박응선", 27, False)
+나의 이름은 박응선입니다.
+나이는 27살입니다.
+여자입니다.
+```
+  + 함수 매개변수에 초깃값을 설정할 때 주의할 사항
+  ```python
+  def say_myself(name, man=True, old):
+      print("나의 이름은 %s입니다." % name)
+      print("나이는 %d살입니다." % old)
+      if man:
+          print("남자입니다.")
+      else:
+          print("여자입니다.")
+  
+  say_myself("박응용", 27)
+  SyntaxError: non-default arguments follows default argument
+  ```
++ 함수 안에서 선언된 변수의 효력 범위
+```python
+# vartest.py
+a = 1
+def vartest(a):
+    a = a + 1
+    
+vartest(a)  # vartest함수의 매개변수 a와 함수 밖의 변수 a는 전혀 상관이 없는 별개의 변수들임.
+print(a)
+1
+```
+```python
+# vartest_error.py
+def vartest(a):
+    a = a + 1
+    
+vartest(3)
+print(a)
+Traceback (most recent call last):
+  File "/vartest_error.py", line 7, in <module>
+    print(a)
+NameError: name 'a' is not defined
+```
+  + 함수 안에서 함수 밖의 변수를 변경하는 방법
+  1. return 이용하기
+  ```python
+  # vartest_return.py
+  a = 1
+  def vartest(a):
+      a = a + 1
+      return a
+      
+  a = vartest(a)
+  print(a)
+  2
+  ```
+  2. global 명령어 이용하기
+  ```python
+  # vartest_global.py
+  a = 1
+  def vartest():
+      global a  # global 명령어를 통해 함수 밖의 a변수를 직접 사용한다는 의미임.
+      a = a + 1
+  
+  vartest()
+  print(a)
+  2
+  ```
++ lambda
+```python
+# lambda 사용법
+lambda 매개변수1, 매개변수2, ... : 매개변수를 이용한 표현식
+```
+```python
+# 예제
+>>> sum = lambda a, b: a+b
+>>> sum(3, 4)
+7
+```
+```python
+# 위 예제는 def를 사용한 아래 함수와 동일한 일을 수행한다.
+>>> def sum(a, b):
+...     return a + b
+...
+>>> sum(3, 4)
+7
+```
+```python
+# lambda가 포함된 리스트 예제
+>>> myList = [lambda a,b:a+b, lambda a,b:a*b]
+>>> myList
+[<function <lambda> at 0x00E99468>, <function <lambda> at 0x00E994F8>]
+```
+```python
+>>> myList[0]
+<function <lambda> at 0x00E99468>
+>>> myList[0](3, 4)
+7
+```
+```python
+>>> myList[1]
+<function <lambda> at 0x00E994F8>
+>>> myList[1](3, 4)
+12
+```
++ 연습문제
+  1. 
