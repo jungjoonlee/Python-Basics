@@ -597,4 +597,184 @@ lambda 매개변수1, 매개변수2, ... : 매개변수를 이용한 표현식
   ```
 ---
 #### 04-3. 파일 읽고 쓰기
-+ //
++ 파일 생성하기
+```python
+#파일 생성 방법
+파일 객체 = open(파일 이름, 파일 열기 모드)
+```
+```python
+# 파일 생성 예시
+f = open('새파일.txt', 'w')
+f.close()
+```
+  + 파일 열기 모드 종류
+  
+  파일 열기 모드 | 설명
+  ------------- | ---
+  r | 읽기모드 - 파일을 읽기만 할 때 사용
+  w | 쓰기모드 - 파일에 내용을 쓸 때 사용
+  a | 추가모드 - 파일의 마지막에 새로운 내용을 추가시킬 때 사용
+  
++ 파일을 쓰기 모드로 열어 출력값 적기
+```python
+# writedata.py
+
+f = open('C:/doit/새파일.txt', 'w')
+for i in range(1, 11):
+    data = "%d번째 줄입니다.\n" % i
+    f.write(data)
+f.close()
+```
+```python
+# 비교 프로그램
+
+for i in range(1, 11):
+    data = "%d번째 줄입니다.\n" % i
+    print(data)
+```
++ 프로그램의 외부에 저장된 파일을 읽는 여러 가지 방법
+  1. readline() 함수 이용하기
+  ```python
+  # readline.py
+  
+  f = open('C:/doit/새파일.txt', 'r')
+  line = f.readline()
+  print(line)
+  f.close()
+  ```
+  ```python
+  # 실행 결과
+  1번째 줄입니다.
+  
+  ```
+  ```python
+  # readline_all.py
+  
+  f = open('C:/doit/새파일.txt', 'r')
+  while True:
+      line = f.readline()
+      if not line: break
+      print(line)
+  f.close()
+  ```
+  ```python
+  # 실행 결과
+  1번째 줄입니다.
+  
+  2번째 줄입니다.
+  
+  3번째 줄입니다.
+  
+  4번째 줄입니다.
+  
+  5번째 줄입니다.
+  
+  6번째 줄입니다.
+  
+  7번째 줄입니다.
+  
+  8번째 줄입니다.
+  
+  9번째 줄입니다.
+  
+  10번째 줄입니다.
+  
+  ```python
+  # 비교 프로그램
+  while 1:
+      data = input()  # readline_all.py와 비교 시 입력을 받는 방식만 다르다.
+      if not data: break
+      print(data)
+  ```  
+  2. readlines() 함수 이용하기
+  ```python  
+  f = open('C:/doit/새파일.txt', 'r')
+  lines = f.readlines()
+  for line in lines:
+      print(line)
+  f.close()
+  ```
+  3. read() 함수 이용하기
+  ```python
+  f = open('C:/doit/새파일.txt', 'r')
+  data = f.read()  # f.read()는 파일의 내용 전체를 문자열로 리턴.
+  print(data)
+  f.close()
+  ```
++ 파일에 새로운 내용 추가하기
+```python
+# adddata.py
+
+f = open('C:/doit/새파일.txt', 'a')
+for i in range(11, 20):
+    data = "%d번째 줄입니다.\n" % i
+    f.write(data)
+f.close()
+```
++ with문과 함께 사용하기
+```python
+# 지금까지 파일을 열고 닫아온 방식
+f = open("foo.txt", 'w')
+f.write("Life is too short, you need python")
+f.close()
+```
+```python
+# with문을 이용하여 재작성한 모습
+with open("foo.txt", 'w') as f:  # with 블록을 벗어나는 순간 열려있던 파일 객체 f가 자동으로 close된다.
+    f.write("Life is too short, you need python")
+```
+  + sys 모듈로 입력 인수 주기
+
++ 연습문제
+  1. 파일 읽고 출력하기
+  ```python
+  f1 = open("test.txt", 'w')
+  f1.write("Life is too short")
+  f1.close()  # 열려있는 파일 객체를 닫고 열어야 저장한 데이터를 읽을 수 있다.
+  
+  f2 = open("test.txt", 'r')
+  print(f2.read())
+  f2.close()
+  ```
+  ```python
+  # 교재 풀이 - close를 명시할 필요가 없는 with구문 활용
+  with open("test.txt", 'w') as f1:
+      f1.write("Life is too short")
+      
+  with open("test.txt", 'r') as f2:
+      print(f2.read())
+  ```
+  2. 파일저장
+  ```python
+  user_input = input("저장할 내용을 입력하세요: ")
+  f = open("test.txt", 'a')  # 추가모드(a)로 파일을 열었을 때 해당 파일이 존재하지 않으면 새로운 파일이 생성된다.(쓰기모드(w)와 동일함) 
+  f.write(user_input)
+  f.write("\n")
+  f.close()
+  ```
+  3. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
