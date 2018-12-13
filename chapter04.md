@@ -724,7 +724,34 @@ with open("foo.txt", 'w') as f:  # with 블록을 벗어나는 순간 열려있�
     f.write("Life is too short, you need python")
 ```
   + sys 모듈로 입력 인수 주기
-
+  ```python
+  # sys1.py
+  import sys
+  
+  args = sys.argv[1:]
+  for i in args:
+      print(i)
+  ```
+  ```python
+  # sys1.py 실행 결과 - window prompt 창으로 실행
+  C:\doit>python sys1.py aaa bbb ccc
+  aaa
+  bbb
+  ccc
+  ```
+  ```python
+  # sys2.py
+  import sys
+  
+  args = sys.argv[1:]
+  for i in args:
+      print(i.upper(), end=' ')
+  ```
+  ```python
+  # sys2.py 실행 결과
+  C:/doit>python sys2.py life is too short, you need python
+  LIFE IS TOO SHORT, YOU NEED PYTHON
+  ```
 + 연습문제
   1. 파일 읽고 출력하기
   ```python
@@ -752,29 +779,87 @@ with open("foo.txt", 'w') as f:  # with 블록을 벗어나는 순간 열려있�
   f.write("\n")
   f.close()
   ```
-  3. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  3. 역순 저장
+  ```python
+  # abc.txt 생성
+  f = open("abc.txt", 'w')
+  for factor in ["AAA", "BBB", "CCC", "DDD", "EEE"]:
+      f.write(factor)
+      f.write("\n")
+  f.close()
+  ```
+  ```python
+  # 역순 출력 프로그램
+  f = open("abc.txt", 'r')
+  lines = f.readlines()
+  f.close
+  
+  lines.reverse() 
+  
+  f = open("abc.txt", 'w')
+  for line in lines:
+      line = line.strip()  # 포함되어 있는 줄바꿈 문자 제거
+      f.write(line)
+      f.write("\n")
+  f.close()
+  ```
+  ```python
+  # 역순 출력 프로그램 - 교재 풀이
+  f = open("abc.txt", 'r')
+  lines = f.readlines()
+  f.close
+  
+  rlines = reversed(lines) 
+  
+  f = open("abc.txt", 'w')
+  for line in rlines:
+      line = line.strip()  # 포함되어 있는 줄바꿈 문자 제거
+      f.write(line)
+      f.write("\n")
+  f.close()
+  ```
+  4. 파일 수정
+  ```python
+  # test.txt 생성
+  with open('test.txt', 'w') as f:
+      f.write("Life is too short\nyou need java")
+  ```
+  ```python
+  # java => python 변경
+  with open('test.txt', 'r') as f:
+      content = f.read()
+  
+  content = content.reaplce('java', 'python')
+  
+  with open('test.txt', 'w') as f:
+      f.write(content)
+  ```
+  5. 평균값 구하기
+  ```python
+  # sample.txt 생성
+  f = open('sample.txt', 'w')
+  for i in [70, 60, 55, 75, 95, 90, 80, 80, 85, 100]:
+      f.write(i)
+      f.write('\n')
+  f.close()
+  ```
+  ```python
+  # 평균값 산출 프로그램
+  with open('sample.txt', 'r') as f:
+      numbers = f.readlines()
+  
+  total = 0
+  for number in numbers:
+      total += int(number)
+      # 교재 풀이 ==> 위 줄(853)을 두 단계로 구분하여 작성
+      # score = int(number)
+      # total += score
+  avg_numbers = total / len(numbers)
+  
+  with open('result.txt', 'w') as f:
+      f.write(str(avg_numbers))
+  ```
+  ```python
+  # 실행 결과
+  79.0
+  ```
