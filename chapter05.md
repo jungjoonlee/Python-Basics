@@ -265,4 +265,164 @@ second | 2
 2.0
 ```
 + 클래스의 상속
-//
+```python
+# 상속이란 클래스 생성 시, 다른 클래스의 기능을 물려받을 수 있게 하는 기능
+# 상속 방법: 클래스 이름 뒤 괄호 안에 상속할 클래스명 기입
+class 클래스명(상속할 클래스명)
+# 상속 예시
+>>> class MoreFourCal(FourCal):
+...     pass
+...
+>>> a = MoreFourCal(4, 2)
+>>> a.sum()
+6
+>>> a.mul()
+8
+>>> a.sub()
+2
+>>> a.div()
+2.0
+```
+```python
+# 상속받은 클래스만의 새로운 기능 추가
+>>> class MoreFourCal(FourCal):
+...     def pow(self):
+...         result = self.first ** self.second
+...         return result
+...
+>>> a = MoreFourCal(4, 2)
+>>> a.pow()
+16
+```
+  + 메서드 오버라이딩 (Method Overriding)
+  ```python
+  # FourCal클래스의 div메서드 수행 시, 0으로 나누면 ZeroDivisionError 발생
+  >>> a = FourCal(4, 0)
+  >>> a. div()
+  Traceback (most recent call last):
+    File "<studin>", line 1, in <module>
+    File "<stdin>", line 18, in div
+  ZeroDivisionError: division by zero
+  ```
+  ```python
+  # 메서드 오버라이딩(overriding, 덮어쓰기)이란 부모 클래스에 있는 메서드를 동일한 이름으로 다시 만드는 활동
+  # 오버라이딩을 통해 0으로 나눴을 때, 오류가 아닌 0을 리턴하도록 div메서드 수정
+  >>> class SafeFourCal(FourCal):
+  ...     def div(self):
+  ...         if self.second == 0:
+  ...             return 0
+  ...         else:
+  ...             return self.first / self.second
+  ...
+  >>> a = SafeFourCal(4, 0)
+  >>> a.div()
+  0
+  ```
++ 클래스 변수
+```python
+# 클래스 변수 선언
+>>> class Family:
+...     lastname = 'Kim'
+...
+# 클래스 변수 호출1
+>>> print(Family.lastname)  # 클래스명.클래스변수
+Kim
+# 클래스 변수 호출2  # 클래스에 의해 생성된 객체를 통한 호출
+>>> a = Family()
+>>> b = Family()
+>>> print(a.lastname)
+Kim
+>>> print(b.lastname)
+Kim
+```
+```python
+# 클래스 변수의 값을 변경하면 클래스에 의해 생성된 객체들의 클래스 변수(lastname) 값들도 모두 변경된다.
+>>> Family.lastname = 'Park'
+>>> print(a.lastname)
+Park
+>>> print(b.lastname)
+Park
+# 클래스 변수가 클래스에 의해 생성된 모든 객체에 공유된다는 특징은 id함수를 통해 확인할 수 있다.
+>>> id(Family.lastname)
+48336160
+>>> id(a.lastname)
+48336160
+>>> id(b.lastname)
+48336160
+>>> id(Family.lastname) == id(a.lastname) == id(b.lastname)
+True
+```
++ 클래스의 활용
+`홍길동|42|A`과 같이 이름, 나이, 성적이 파이프 문자`|`로 구분한 문자열을 처리하는 클래스를 만들어 본다.
+```python
+# 문자열에서 나이를 출력하는 함수
+>>> def print_age(data):
+...     tmp = data.split("|")
+...     age = tmp[1]
+...     print(age)
+...
+>>> data = "홍길동|42|A"
+>>> print_aga(data)
+42
+# 문자열에서 이름과 점수를 출력하는 함수
+>>> def print_grade(data):
+...     tmp = data.split("|")
+...     name = tmp[0]
+...     grade = tmp[2]
+...     print("%s님 당신의 점수는 %s입니다." % (name, grade))
+...
+>>> data = "홍길동|42|A"
+>>> print_grade(data)
+홍길동님 당신의 점수는 A입니다.
+```
+```python
+# 함수 대신 클래스를 이용하여 개선된 코드 작성
+>>> class Data:
+...     def __init__(self, data):
+...         tmp = data.split("|")
+...         self.name = tmp[0]
+...         self.age = tmp[1]
+...         self.grade = tmp[2]
+...
+>>> data = Data("홍길동|42|A")
+>>> print(data.age)
+42
+>>> print(data.name)
+홍길동
+>>> print(data.grade)
+A
+# 정형화된 객체를 활용하여 기존 함수(나이, 성적 출력) 개선
+>>> def print_age(data):
+...     print(data.age)
+...
+>>> def print_grade(data):
+...     print("%s님 당신의 점수는 %s입니다." % (data.name, data.grade))
+...
+>>> data = Data("홍길동|42|A")
+>>> print_age(data)
+42
+>>> print_grade(data)
+홍길동님 당신의 점수는 A입니다.
+```
+```python
+# pring_age, pring_grade 함수는 data객체에 의존적인 함수
+# 그러므로 두 함수를 Data클래스의 메서드로 만들어 준다.
+>>> class Data:
+...     def __init__(self, data):
+...         tmp = data.split("|")
+...         self.name = tmp[0]
+...         self.age = tmp[1]
+...         self.grade = tmp[2]
+...     def print_age(self):
+...         print(self.age)
+...     def print_grade(self):
+...         print("%s님 당신의 점수는 %s입니다." % (self.name, self.grade))
+...
+>>> data = Data("홍길동|42|A")
+>>> data.print_age()
+42
+>>> data.print_grade()
+홍길동님 당신의 점수는 A입니다.
+```
++ 연습문제
+  1. //
