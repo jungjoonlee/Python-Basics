@@ -528,12 +528,12 @@ A
       def sum(self):
           for i in self.value:
               self.a += i
-          return self.a
+          return self.a  # 메서드 수행 후 self.a값이 초기화되지 않기 때문에 2회 이상 수행 시 self.a값이 누적되면서 의도와 다른 결과 획득
           
       def avg(self):
           for i in self.value:
               self.b += i
-          return self.b / len(self.value)
+          return self.b / len(self.value)  # sum메서드와 마찬가지로 self.b값이 초기화되지 않으므로 반복 수행 시 값이 누적되면서 다른 결과 획득
   
   # 교재 풀이
   # class Calculator:
@@ -564,3 +564,7 @@ A
   40
   8.0
   ```
+---
+#### 05-2. 모듈
++ /  
+  + /
