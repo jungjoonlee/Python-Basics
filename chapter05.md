@@ -425,4 +425,142 @@ A
 홍길동님 당신의 점수는 A입니다.
 ```
 + 연습문제
-  1. //
+  1. Calculator 1
+  ```python
+  class Calculator:
+      def __init__(self):
+          self.value = 0
+      
+      def add(self, val):  # 메서드의 첫 번째 매개변수(self) 추가
+          self.value += i
+  
+  cal = Calculator()
+  cal.add(3)
+  cal.add(4)
+  
+  print(cal.value)
+  7
+  ```
+  2. Calculator 2
+  ```python
+  class Calculator:
+      def __init__(self, init_value):
+          self.value = init_value
+          
+      def add(self, val):
+          self.value += val
+          
+  cal = Calculator(0)  # 생성자(constructor)의 매개변수인 init_value에 해당하는 값을 전달하지 않아 오류 발생. 해당 값(0)을 전달하여 해결
+  cal.add(3)
+  cal.add(4)
+  
+  print(cal.value)
+  7
+  ```
+  ```python
+  # 교재 풀이
+  class Calculator:
+      def __init__(self, init_value=0):  # 초기값 init_value를 0으로 디폴트로 지정
+          self.value = init_value
+          
+      def add(self, val):
+          self.value += val
+          
+  cal = Calculator()  # init_value 디폴트 값을 정함으로써 초기값 전달 없이 객체 생성 가능
+  cal.add(3)
+  cal.add(4)
+  
+  print(cal.value)
+  7
+  ```
+  3. UpgradeCalculator
+  ```python
+  class Calculator:
+      def __init__(self):
+          self.value = 0
+          
+      def add(self, val):
+          self.value += val
+  
+  class UpgradeCalculator(Calculator):
+      def minus(self, val):
+          self.value -= val
+  
+  
+  cal = UpgradeCalculator()
+  cal.add(10)
+  cal.minus(7)
+  
+  print(cal.value)
+  3
+  ```
+  4. MaxLimitCalculator
+  ```python
+  class Calculator:
+      def __init__(self):
+          self.value = 0
+          
+      def add(self, val):
+          self.value += val
+      
+  class MaxLimitCalculator(Calculator):
+      def add(self, val):
+          self.value += val
+          if self.value > 100:
+              self.value = 100
+  
+  
+  cal = MaxLimitCalculator()
+  cal.add(50)
+  cal.add(60)
+  
+  print(cal.value)
+  100
+  ```
+  5. Calculator 3
+  ```python
+  class Calculator:
+      def __init__(self, init_value):
+          self.value = init_value
+          self.a = 0
+          self.b = 0
+          
+      def sum(self):
+          for i in self.value:
+              self.a += i
+          return self.a
+          
+      def avg(self):
+          for i in self.value:
+              self.b += i
+          return self.b / len(self.value)
+  
+  # 교재 풀이
+  # class Calculator:
+  #   def __init__(self, numberlist):
+  #       self.numberlist = numberlist
+          
+  #   def sum(self):
+  #       result = 0
+  #       for num in self.numberlist:
+  #           result += num
+  #       return result
+          
+  #   def avg(self):
+  #       total = self.sum()
+  #       return total / len(self.numberlist)
+            
+  
+  cal1 = Calculator([1, 2, 3, 4, 5])
+  print(cal1.sum())
+  print(cal1.avg())
+  
+  cal2 = Calculator([6, 7, 8, 9, 10])
+  print(cal2.sum())
+  print(cal2.avg())
+  
+  15
+  3.0
+  40
+  8.0
+  ```
