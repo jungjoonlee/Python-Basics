@@ -566,5 +566,115 @@ A
   ```
 ---
 #### 05-2. 모듈
-+ /  
-  + /
++ 모듈 만들고 불러 보기  
+  + 모듈이란 함수나 변수 또는 클래스를 모아 놓은 파일로, 다른 파이썬 프로그램에서 불러와 사용할 수 있게끔 만들어진 파이썬 파일이다.
+    ```python
+    # 모듈 생성
+    # mod1.py
+    def sum(a, b):
+        return a + b
+    ````
+    ```python
+    # 모듈 호출 (명령 프롬프트 창)
+    C:\Users\Jungjoon>cd C:\doit
+    C:\doit>dir
+    ...
+    2018-12-23 오후 02:38 49 mod1.py
+    ...
+    C:\doit>python
+    >>> import mod1  # import는 파이썬 모듈을 불러오는 명령어로 'import 모듈이름'과 같이 사용한다. 모듈이름 기입 시 확장자명(.py)은 적지 않는다.
+    >>> print(mod1.sum(3, 4))  # 모듈 내 함수 이용 방법: 모듈이름.함수이름
+    7
+    ```
+    ```python
+    # 기존 모듈(mod1.py)에 함수 추가
+    def safe_sum(a, b):
+        if type(a) != type(b):
+            print("더할 수 있는 것이 아닙니다.")
+            return  # return 단독으로 사용하여 None 값을 돌려주고 함수 종료
+        else:
+            result = sum(a, b)
+            return result
+            
+    # 추가한 함수 실행
+    >>> import mod1
+    >>> print(mod1.safe_sum(3, 4))
+    7
+    >>> print(mod1.safe_sum(1, 'a'))
+    더할 수 있는 값이 아닙니다.
+    None
+    
+    # 기존 함수 실행
+    >>> print(mod1.sum(10, 20))
+    30
+    ```
+  + 모듈 함수를 사용하는 또 다른 방법
+  ```python
+  # 사용 방법
+  from 모듈이름 import 모듈함수
+  
+  # 사용 예시1
+  >>> from mod1 import sum
+  >>> sum(3, 4)
+  7
+  >>> from mod1 import sum, safe_sum
+  >>> sum(3, 5)
+  8
+  >>> safe_sum(4, 6)
+  10
+  
+  # 사용 예시2
+  >>> from mod1 import *
+  >>> sum(10, 20)
+  30
+  >>> safe_sum(10, 'b')
+  더할 수 있는 값이 아닙니다.
+  ```
++ if__name__=="__main__":의 의미
+```python
+# mod1.py 업데이트
+def sum(a, b):
+    return a + b
+    
+def safe_sum(a, b):
+    if type(a) != type(b):
+        print("더할 수 있는 값이 아닙니다.")
+        return
+    else:
+        result = sum(a, b)
+        return result
+
+# print문 추가
+print(safe_sum('a', 1))
+print(safe_sum(1, 4))
+print(sum(10, 10.4))
+```
+```python
+# mod1.py 실행
+C:\doit>python mod1.py
+더할 수 있는 값이 아닙니다.
+None
+5
+20.4
+```
+```python
+# mod1.py 호출
+C:\doit>python
+>>> import mod1
+더할 수 있는 값이 아닙니다.  # import를 수행하는 순간 mod1.py가 실행되어 결과값 출력
+None
+5
+20.4
+
+# import 수행 시 모듈 실행 방지법
+# mod1.py에 추가한 print문 상단에 if문 추가
+if __name__ == "__main__":  # mod1.py 실행 시 __name__ 변수에 '__main__' 저장, 조건문이 참이 되면서 if문 다음 문장 수행. import 시에는 __name__ 변수에 모듈이름 'mod1'이 값으로 저장, 조건문이 거짓이 되면서 if문 다음 문장이 수행되지 않는다.
+    print(safe_sum('a', 1))
+    print(safe_sum(1, 4))
+    print(sum(10, 10.4))
+
+# if문 추가 후 import 실행 결과
+>>> import mod1
+>>>
+```
++ 클래스나 변수 등을 포함한 모듈
