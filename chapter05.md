@@ -678,3 +678,145 @@ if __name__ == "__main__":  # mod1.py 실행 시 __name__ 변수에 '__main__' �
 >>>
 ```
 + 클래스나 변수 등을 포함한 모듈
+```python
+# 변수, 클래스, 함수를 모두 포함하는 모듈 생성
+# mod2.py
+PI = 3.141592
+
+class Math:
+    def solv(self, r):
+        return PI * (r ** 2)
+        
+def sum(a, b):
+    return a + b
+
+if __name__=="__main__":
+    print(PI)
+    a = Math()
+    print(a.solv(2))
+    print(sum(PI, 4.4))
+```
+```python
+# mod2.py 실행 결과
+C:\doit>python mod2.py
+3.141592
+12.566368
+7.541592
+```
+```python
+# mod2.py 호출 결과
+C:\doit>python
+>>> import mod2
+>>>              # __name__=="__main__" 조건문이 거짓이 되므로 아무 값도 출력되지 않는다.
+```
+  + 모듈에 포함된 변수, 클래스, 함수 사용하기
+  ```python
+  # 모듈 내 변수 사용법
+  C:/doit>python
+  >>> import mod2
+  >>> print(mod2.PI)  # 모듈명.변수명 
+  3.141592
+  ```
+  ```python
+  # 모듈 내 클래스 사용법
+  >>> a = mod2.Math()  # 모듈명.클래스명
+  >>> print(a.solv(2))
+  12.566368
+  ```
+  ```python
+  # 모듈 내 함수 사용법
+  >>> print(mod2.sum(mod2.PI, 4.4))  # 모듈명.함수
+  7.541592
+  ```
++ 새 파일 안에서 이전에 만든 모듈 불러오기
+```python
+# modtest.py
+import mod2
+result = mod2.sum(3, 4)
+print(result)
+7
+```
+  + 모듈을 저장한 디텍터리로 이동하지 않고 모듈을 불러와 사용하는 방법
+    1. sys.path.append(모듈을 저장한 디렉터리명) 사용
+    ```python
+    >>> import sys   # sys 모듈 호출
+    >>> sys.path   # 파이썬 라이브러리가 설치되어 있는 디렉터리 확인
+    ['', ...]
+    >>> sys.path.append("C:/doit/mymod")   # 'C:/doit/mymod' 디렉터리를 sys.path에 추가
+    >>> sys.path
+    ['', ..., 'C:/doit/mymod']   # 마지막 요소에 'C:/doit/mymod' 추가
+    ```
+    ```python
+    # 모듈 호출 테스트
+    >>> import mod2
+    >>> print(mod2.sum(3, 4))
+    7
+    ```
+    2. PYTHONPATH 환경 변수 사용
+    ```python
+    C:\Users\home>set PYTHONPATH=C:\doit\mymod  # set 명령어로 PYTHONPATH 환경 변수에 모듈이 있는 디렉토리 설정
+    C:\Users\home>python
+    >>> import mod2
+    >>> print(mod2.sum(3, 4))
+    7
+    ```
++ 연습문제
+  1. 모듈 사용하기 1
+    ```python
+    # 'C:\doit' 디렉토리로 이동하여 import
+    C:\Users\Jungjoon>cd C:\doit
+    C:\doit>python
+    >>> import mymod
+    >>>
+    
+    # sys.path에 'C:\doit' 추가
+    C:\Users\Jungjoon>python
+    >>> import sys
+    >>> sys.path.append('C:\doit')
+    >>> import mymod
+    >>>
+    
+    # PYTHONPATH 설정
+    C:\Users\home>set PYTHONPATH=C:\doit
+    C:\Users\home>python
+    >>> import mymod
+    >>>
+    ```
+  2. 모듈 작성
+    ```python
+    # mymod.py
+    
+    def mysum(a, b):
+        return a + b
+    ```
+  3. 모듈 사용하기 2
+    ```python
+    # mymod.py
+    
+    def mysum(a, b):
+        return = a + b
+      
+    # test
+    print(mysum(3, 7))   # 10 출력
+    ```
+    ```python
+    # mymod.py 실행 결과
+    >>> import sys
+    >>> sys.path.append('C:\doit')
+    >>> import mymod
+    10   # '__name__' 변수를 이용한 조건문의 부재로 인해 모듈 실행/호출 두 경우 모두 print문 수행 
+    ```
+    ```python
+    # mymod.py 수정
+    
+    def mysum(a, b):
+        return a + b
+      
+    # test
+    if __name__=="__main__":  # '__name__' 변수를 이용한 조건문 추가
+        print(mysum(3, 7))    # 직접 실행 시에만 10 출력
+    ```
+---
+#### 05-3. 패키지
++ /
+  + //
