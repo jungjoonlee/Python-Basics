@@ -818,5 +818,170 @@ print(result)
     ```
 ---
 #### 05-3. 패키지
-+ /
-  + //
++ 패키지(Package)란 무엇인가?
+  + 파이썬 패키지는 디텍토리와 모듈로 구성되며, 도트(.)를 통해 모듈을 계층적(디렉토리 구조)으로 관리할 수 있게 해준다.
+    ```python
+    # 패키지 예시
+    game/              # 디렉토리(root)
+        __init__.py       # 모듈
+        sound/         # 디렉토리(sub)
+            __init__.py   # 모듈
+            echo.py       # 모듈
+            wav.py        # 모듈
+        graphic/       # 디렉토리(sub)
+            __init__.py   # 모듈
+            screen.py     # 모듈
+            render.py     # 모듈
+        play/          # 디렉토리(sub)
+            __init__.py   # 모듈
+            run.py        # 모듈
+            test.py       # 모듈
+    ```
++ 패키지 만들기
+  + 패키지 기본 구성 요소 준비하기
+   1. 디렉토리 및 모듈(파일) 생성
+     ```python
+     C:/doit/game/__init__.py
+     C:/doit/game/sound/__init__.py
+     C:/doit/game/sound/echo.py
+     C:/doit/game/graphic/__init__.py
+     C:/doit/game/graphic/render.py
+     ```
+   2. 모듈 별 내용 작성
+     ```python
+     # 디렉토리 별로 있는 '__init__.py'의 내용은 일단 비워둔다.
+     ```
+     ```python
+     # echo.py
+     def echo_test():
+         print("echo")
+     ```
+     ```python
+     # render.py
+     def render_test():
+         print("render")
+     ```
+   3. 패키지 참조 설정
+     ```python
+     C:\>set PYTHONPATH=C:/doit
+     C:\>python
+     >>>
+     ```
+  + 패키지 안의 함수 실행하기
+    ```python
+    # 1. 모듈 import
+    >>> import game.sound.echo
+    >>> game.sound.echo.echo_test()
+    echo
+    ```
+    ```python
+    # 2. 모듈 from ... import
+    >>> from game.sound import echo
+    >>> echo.echo_test()
+    echo
+    ```
+    ```python
+    # 3. 함수 from ... import
+    >>> from game.sound.echo import echo_test
+    >>> echo_test()
+    echo
+    ```
++ __init__.py 의 용도
+  + `__init__.py`는 해당 디렉토리가 패키지의 일부임을 알려주는 역할
+  + 위 예시의 디렉토리인 game, sound, graphic에 `__init__.py`가 없다면 패키지로 인식되지 않는다.
+  + python3.3 버전부터는 `__init__.py`가 없어도 패키지로 인식되지만, 하위 버전 호환을 위해 생성하는 것이 안전하다.
++ __all__ 의 용도
+  + `*`로 디렉토리의 **모듈** import 시 해당 디렉토리 내 `__init__.py`에 `__all__` 변수를 설정하고 import할 모듈을 정의해주어야 한다.
+    ```python
+    # 현재의 패키지에서 * 사용 시 오류(NameError) 발생
+    >>> from game.sound import *
+    >>> echo.echo_test()
+    Traceback (most recent call last):
+      File "<pyshell#5>", line 1, in <module>
+        echo.echo_test()
+    NameError: name 'echo' is not defined
+    ```
+    ```python
+    # C:/doit/game/sound/__init__.py
+    # __all__ 변수 설정
+    __all__ = ['echo']
+    ```
+    ```python
+    >>> from game.sound import *
+    >>> echo.echo_test()
+    echo
+    ```
+  + _주의점: `from a.b.c. import *`의 마지막 항목 c가 모듈인 경우에는 `__all__`과 상관없이 무조건 import된다._
++ relative 패키지
+  + `graphic 디렉토리>render.py 모듈`에서 `sound 디렉토리>echo.py 모듈`을 사용할 때는 절대 경로뿐만 아니라 상대 경로도 사용할 수 있다.
+    ```python
+    # 절대 경로 예시
+    # render.py
+    from game.sound.echo import echo_test   # import문 추가
+    
+    def render_test():
+        print("render")
+        echo_test()
+    ```
+    ```python
+    # 절대 경로 예시 실행 결과
+    >>> from game.graphic.render import render_test
+    >>> render_test()
+    render
+    echo
+    ```
+    ```python
+    # 상대 경로 예시
+    # render.py
+    from ..sound.echo import echo_test
+    
+    def render_test():
+        print("render")
+        echo_test()
+    ```
+    ```python
+    # 상대 경로 예시 실행 결과
+    >>> from game.graphic.render import render_test
+    >>> render_test()
+    render
+    echo
+    ```
+  + `relative` 접근자
+    
+    접근자|위치
+    ------|---
+    `..`|부모 디렉토리
+    `.`|현재 디렉토리
+  
+  + _relative 접근자는 모듈 안에서만 사용할 수 있다. 인터프리터에서 사용하면 오류(SystemError)가 발생한다._
++ 연습문제
+  1. 패키지 사용 1
+  2. 패키지 사용 2
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
