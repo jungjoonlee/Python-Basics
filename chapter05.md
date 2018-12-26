@@ -956,32 +956,42 @@ print(result)
   + _relative 접근자는 모듈 안에서만 사용할 수 있다. 인터프리터에서 사용하면 오류(SystemError)가 발생한다._
 + 연습문제
   1. 패키지 사용 1
+    ```python
+    # 아래 game 패키지의 echo모듈에 있는 echo_test함수를 이용하려고 한다.
+    game/
+        __init__.py
+        sound/
+            __init__.py
+            echo.py
+            wav.py
+        graphic/
+            __init__.py
+            screen.py
+            render.py
+        play/
+            __init__.py
+            run.py
+            test.py
+    ```
+    ```python
+    # 아래 호출(3번)은 동작하지 않는다. 모듈을 사용하기 위해서는 import문에 모듈을 포함해야 한다. 하지만 3번 import문은 디렉토리만 포함하고 있다.
+    >>> import game
+    >>> game.sound.echo.echo_test()
+    ```
   2. 패키지 사용 2
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ```python
+    # 아래는 game/graphic/screen.py 의 내용이다.
+    
+    # import가 필요하다. <<< game/sound/echo.py 모듈의 echo_test()함수를 사용하기 위한 import문을 삽입하시오.(단, relative 접근자 사용)
+    echo_test()
+    ```
+    ```python
+    # Answer
+    
+    from ..sound.echo import echo_test
+    echo_test()
+    ```
+---
+#### 05-4. /
++ //
+  + ///
