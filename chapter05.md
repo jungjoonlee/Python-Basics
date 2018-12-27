@@ -992,6 +992,197 @@ print(result)
     echo_test()
     ```
 ---
-#### 05-4. /
-+ //
-  + ///
+#### 05-4. 예외 처리
++ 자주 발생하는 오류
+  1. 디렉토리에 없는 파일을 열 때 (FileNotFoundError)
+  ```python
+  >>> f = open('aaa', 'r')
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  FileNotFoundError: [Errno 2] No such file or directory: 'aaa'
+  ```
+  2. 숫자를 0으로 나누었을 때 (ZeroDivisionError)
+  ```python
+  >>> 4 / 0
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  ZeroDivisionError: division by zero
+  ```
+  3. 리스트에서 얻을 수 없는 값을 호출할 때 (IndexError)
+  ```python
+  >>> a = [1, 2, 3]
+  >>> a[4]
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  IndextError: list index out of range
+  ```
++ 오류 예외 처리 기법
+  1. try .. **except**
+    ```python
+    # 기본 구조 - try블록 수행 중 오류가 발생하면 except블록 수행
+    try:
+        ...
+    except [발생 오류[as 오류 메시지 변수]]:  # []는 괄호 안 내용을 생략할 수 있다는 관례적인 표기법. 따라서 except문은 3가지 방법으로 사용가능
+        ...
+    ```
+    1. except만 쓰는 방법
+      ```python
+      # 종류에 상관없이 오류가 발생하면 except 블록 수행
+      try:
+          ...
+      except:
+          ...
+      ```
+    2. 발생 오류만 포함한 except문
+      ```python
+      # except문에 정해 좋은 오류가 발생하면 except 블록 수행
+      try:
+          ...
+      except 발생 오류:
+          ...
+      ```
+    3. 발생 오류, 오류 메시지 변수를 포함한 except문
+      ```python
+      # except문에 정해 좋은 오류가 발생하면 except 블록 수행, 2번과 달리 오류 메시지까지 출력
+      try:
+          ...
+      except 발생 오류 as 오류 메시지 변수:
+          ...
+      ```
+      ```python
+      # 예시
+      try:
+          4 / 0
+      except ZeroDivisionError as e:
+          print(e)
+      
+      division by zero
+      >>> 
+      ```
+  2. try .. **else**
+    ```python
+    # 기본 구조 - 예외(except)가 발생하지 않을 경우 else블록 수행
+    try:
+        ...
+    except [발생 오류[as 오류 메시지 변수]]:
+        ...
+    else:   # else블록은 반드시 except블록 다음에 위치
+        ...
+    ```
+    ```python
+    # 예시
+    try:
+        f = open('foo2.txt', 'r') 
+    except FileNotFoundError as e:
+        print(e)
+    else:
+        data = f.read()
+        f.close()
+        
+    [Errno 2] No such file or directory: 'foo2.txt'
+    >>>
+    ```
+  3. try .. **finally**
+    ```python
+    # 기본 구조 - finally블록은 예외 발생 여부와 상관없이 항상 수행. 보통 사용한 리소스를 close해야하는 경우에 사용
+    f = open('foo.txt', 'w')
+    try:
+        ...    # 수행 내용
+    finally:
+        f.close   # try블록 수행 후 열린 파일(foo.txt)을 닫을 수 있다.
+    ```
+  4. 여러 개의 오류 처리
+    ```python
+    # 기본 구조
+    try:
+        ...
+    except 발생 오류1:
+        ...
+    except 발생 오류2:
+        ...
+    ```
+    ```python
+    # 예시1-1 - 0으로 나누는 오류와 인덱싱 오류 처리
+    try:
+        a = [1, 2]
+        print(a[3])
+        4 / 0
+    except ZeroDivisionError:
+        print('0으로 나눌 수 없습니다.')
+    except IndexError:
+        print('인덱싱 할 수 없습니다.')
+    
+    인덱싱 할 수 없습니다.  # 인덱싱 오류가 먼저 발생했으므로 ZeroDivisionError(4/0)는 발생하지 않았다.
+    >>>
+    ```
+    ```python
+    # 예시1-2 - 예시1 except문에 오류 메시지 추가
+    try:
+        a = [1, 2]
+        print(a[3])
+        4 / 0
+    except ZeroDivisionError as e:
+        print(e)
+    except IndexError as e:
+        print(e)
+    
+    list index out of range
+    >>>
+    ```
+    ```python
+    # 예시2 - ZeroDivisionError, IndexError 동시 처리
+    try:
+        a = [1, 2]
+        print(a[3])
+        4 / 0
+    except (ZeroDivisionError, IndexError) as e:
+        print(e)
+    
+    list index out of range
+    >>>
+    ```
++ 오류 회피하기
+  ```python
+  try:
+      f = open('foo2.txt', 'r')
+  except FileNotFoundError:  # FileNotFoundError 발생 시
+      pass                   # 오류 회피
+  
+  >>>   # 파일이 없음에도 오류가 발생하지 않는다.
+  ```
++ 오류 일부러 발생시키기
+  ```python
+  # 예시: Bird클래스를 상속받은 자식 클래스에서 반드시 fly함수를 구현하게 만들고 싶은 경우
+  class Bird:
+      def fly(self):
+          raise NotImplementedError
+  ```
+  ```python
+  # 자식 클래스(Eagle)에 fly함수 미구현
+  class Eagle(Bird):
+      pass
+      
+  eagle = Eagle()
+  eagle.fly()
+  
+  Traceback (most recent call last):
+    File "C:/doit/raise_error.py", line 11, in <module>
+      eagle.fly()
+    File "C:/doit/raise_error.py", line 5, in fly
+      raise NotImplementedError
+  NotImplementedError
+  >>>
+  ```
+  ```python
+  # 자식 클래스(Eagle)에 fly함수 구현
+  class Eagle(Bird):
+      def fly(self):
+          print('very fast')
+  
+  eagle = Eagle()
+  eagle.fly()
+  
+  very fast
+  >>>
+  ```
++ 예외 만들기
