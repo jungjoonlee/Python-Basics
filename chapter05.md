@@ -1186,3 +1186,208 @@ print(result)
   >>>
   ```
 + 예외 만들기
+  + 파이썬 내장 클래스인 `Exception`을 상속하여 예외를 만들 수 있다.
+    ```python
+    # MyError가 발생하는 예시
+    
+    class MyError(Exception):
+        pass
+    
+    def say_nick(nick):
+        if nick == '바보':
+            raise MyError()
+        print(nick)
+   
+    say_nick("천사")
+    say_nick("바보")
+    
+    
+    천사
+    Traceback (most recent call last):
+      File "C:/doit/define_exceptions.py", line 13, in <moudle>
+        say_nick("바보")
+      File "C:/doit/define_exceptions.py", line 8, in say_nick
+        raise MyError()
+    MyError
+    >>>
+    ```
+    ```python
+    # MyError 발생 시 예외 처리 예시
+    try:
+        say_nikc("천사")
+        say_nikc("바보")
+    except MyError:
+        print("허용되지 않는 별명입니다.")
+    
+    
+    천사
+    허용되지 않은 별명입니다.
+    >>>
+    ```
+    ```python
+    # MyError 발생 시 예외 처리 예시 - 오류 메시지 추가
+    try:
+        say_nikc("천사")
+        say_nikc("바보")
+    except MyError as e:
+        print(e)
+    
+    
+    천사
+          # 오류 메시지가 출력되지 않는다. 오류 클래스에 __str__ 메서드(print문으로 오류 메시지 출력 시 호출되는 메서드) 구현 필요
+    >>>
+    ```
+    ```python
+    # 오류 클래스(MyError)에 __str__메서드 구현
+    
+    class MyError(Exception):
+        def __str__(self):
+            return "허용되지 않는 별명입니다."
+    
+    def say_nick(nick):
+        if nick == '바보':
+            raise MyError()
+        print(nick)
+    
+    try:
+        say_nick("천사")
+        say_nick("바보")
+    except MyError as e:
+        print(e)
+    
+    
+    천사
+    허용되지 않는 별명입니다.  # __str__에서 정의한 오류 메시지가 출력된다. 
+    >>>
+    ```
+    ```python
+    # 오류 발생 시점에 오류 메시지를 전달하고 싶은 경우
+    # 오류 클래스(MyError)에 생성자(constructor) '__init__'를 정의해야 한다.
+    
+    class MyError(Exception):
+        def __init__(self, msg):
+            self.msg = msg
+            
+        def __str__(self):
+            return self.msg
+    
+    def say_nick(nick):
+        if nick == '바보':
+            raise MyError("허용되지 않는 별명입니다.")   # 오류 발생 시점에 오류 메시지를 전달한다.
+        print(nick)
+    
+    try:
+        say_nick("천사")
+        say_nick("바보")
+    except MyError as e:
+        print(e)
+    
+    
+    천사
+    허용되지 않는 별명입니다.
+    >>>
+    ```
++ 연습문제
+  1. 예외처리 1
+    문제 1)
+      ```python
+      # 문제
+      >>> "a" + 1
+      Traceback (most recent call last):
+        File "<stdin1>", line 1, in <module>
+      TypeError: can only concatenate str (not "int") to str  # 문자열 자료에는 정수형 자료를 더할 수 없기 때문에 TypeError 발생
+      ```
+      ```python
+      # 풀이
+      >>> "a" + "1"  # 정수 1을 문자형으로 변경
+      'a1'
+      
+      # 교재 풀이
+      >>> "a" + str(1)
+      'a1'
+      ```
+    문제 2)
+      ```python
+      # 문제
+      >>> a = [1, 2, 3]
+      >>> a[3]
+      Traceback (most recent call last):
+        File "<stdin1>", line 1, in <module>
+      IndexError: list index out of range   # a의 요소 개수는 3개인 반면, a[3]은 4번째 요소값을 호출하는 명령어이므로 IndexError 발생
+      ```
+      ```python
+      # 풀이
+      >>> a= a + [4]   # 4번째 요소값(4)를 a리스트에 추가한다.
+      [1, 2, 3, 4]
+      >>> a[3]
+      4
+  
+      # 교재 풀이
+      >>> a= [1, 2, 3]
+      >>> a[2]   # a리스트의 3번째 요소값을 호출한다.
+      3  
+      ```
+  2. 예외처리 2
+    ```python
+    # 문제
+    a = [1, 2, 3]
+    
+    try:
+        result = a[-3]
+    except:
+        print("error")
+    else:
+        print("no error")
+    ```
+    ```python
+    # 실행 결과
+    no error - a[-3]은 a[0]을 의미하므로 오류가 발생하지 않는다.(음수 인덱싱은 시작점이 -1부터이기 때문)
+  3. 예외처리 3
+    ```python
+    # 문제
+    result = 3
+    
+    try:
+        result += 1
+    except:
+        result += 2
+    else:
+        result += 3
+    finally:
+        result += 4
+    
+    print(result)
+    ```
+    ```python
+    # 실행 결과
+    11 - 1) try 수행(3+1=4) => 2) 오류가 없으므로 else 수행(4+3=7) => 3) finally 수행(7+4=11)
+    ```
+  4. 예외처리 4
+    ```python
+    # 문제
+    result = 0
+    
+    try:
+        [1, 2, 3][3]
+        "a" + 1
+        4 / 0
+    except TypeError:
+        result += 1
+    except ZeroDivisionError:
+        result += 2
+    except IndexError:
+        result += 3
+    else:
+        result += 4
+    finally:
+        result += 5
+        
+    print(result)
+    ```
+    ```python
+    # 실행 결과
+    8 - 1) try문 첫 번째 문장 수행 중 IndexError 발생(0+3=3) => 2) 오류 발생으로 나머지 try블록은 수행하지 않고 finally문 수행(3+5=8)
+    ```
+---
+#### 05-5. 내장 함수
++ //
