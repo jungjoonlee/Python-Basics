@@ -1442,7 +1442,97 @@ print(result)
   ```
 + divmod
   ```python
-  # 
+  # divmod(a,b)는 a를 b로 나눈 몫과 나머지를 튜플 형태로 돌려준다.
+  
+  >>> divmod(7, 3)
+  (2, 1)
+  # 몫을 구하는 연산자(//) 및 나머지를 구하는 연산자(%)
+  >>> 7 // 3
+  2
+  >>> 7 % 3
+  1
+  ```
++ enumerate
+  ```python
+  # 순서가 있는 자료형을 입력으로 받아 인덱스 값을 포함하는 enumerate 객체를 돌려준다.
+  
+  >>> for i, name in enumerate(['body', 'foo', 'bar']):
+  ...     print(i, name)
+  ...
+  0 body
+  1 foo
+  2 bar
+  ```
++ eval
+  ```python
+  # 실행 가능한 문자열을 입력으로 받아 결과값을 돌려준다. 보통 입력받은 문자열로 함수나 클래스를 동적으로 실행하고 싶은 경우에 사용한다.
+  
+  >>> eval('1+2')
+  3
+  >>> eval("'hi' + 'a'")
+  'hia'
+  >>> eval('divmod(4, 3)')
+  (1, 1)
+  ```
++ filter
+  ```python
+  # 첫 번째 인수인 함수에, 두 번째 인수인 반복 가능한 자료형을 입력하여 결과값으로 참인 것만을 묶어서 돌려준다.
+  # positive.py
+  def positive(l):
+      result = []
+      for i in l:
+          if i > 0:
+              result.append(i)
+      return result
+      
+  print(positive([1, -3, 2, 0, -5, 6]))
+  
+  
+  [1, 2, 6]
+  ```
+  ```python
+  # filter함수를 활용하여 위 positive함수를 보다 간략하게 만들 수 있다.
+  # filter1.py
+  
+  def positive(x):
+      return x > 0
+      
+  print(list(filter(positive, [1, -3, 2, 0, -5, 6])))
+  
+  
+  [1, 2, 6]
+  ```
+  ```python
+  # lambda를 이용해 filter1.py의 코드를 더욱 간략하게 만들 수 있다. 
+  >>> list(filter(lambda x: x > 0, [1, -3, 2, 0, -5, 6]))
+  [1, 2, 6]
+  ```
++ hex
+  ```python
+  # 정수값을 입력받아 16진수로 변환한 값을 돌려준다.
+  
+  >>> hex(234)
+  '0xea'
+  >>> hex(3)
+  '0x3'
+  ```
++ id
+  ```python
+  # 입력받은 객체의 고유 주소값(reference)를 돌려준다.
+  
+  >>> a = 3
+  >>> id(3)
+  1854064800
+  >>> id(a)
+  1854064800
+  >>> b = a
+  >>> id(b)
+  1854064800   # 3, a, b의 고유 주소값은 동일하다. 즉 3개 모두 같은 객체를 가리키고 있다.
+  >>> id(4)
+  1854064816   # 4를 입력하면 다른 고유 주소값이 출력된다. 
+  ```
++ input
+  ```python
   
   
   
@@ -1454,6 +1544,12 @@ print(result)
   
   
   
+
+
+
+
+
+
 
 
 
