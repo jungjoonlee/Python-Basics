@@ -1533,31 +1533,146 @@ print(result)
   ```
 + input
   ```python
+  # 사용자 입력을 받는 함수로, 입력 인수로 문자열을 주면 해당 문자열은 프롬프트가 된다.
+  
+  >>> a = input()
+  hi
+  >>> a
+  'hi'
+  >>> b = input("Enter: ")
+  Enter: hi   # 입력 인수 문자열("Enter: ")이 프롬프트로 동작한다.
+  >>> b
+  'hi'
+  ```
++ int
+  ```python
+  # 문자열 형태의 숫자, 소수점이 있는 숫자를 정수 형태로 돌려준다.
+  # 정수를 입력받으면 그대로 돌려준다.
+    >>> int('3')
+  3
+  >>> int(3.4)
+  3
+  
+  # int(x, radix)는 radix 진수로 표현된 문자열 x를 10진수로 변환하여 돌려준다.
+  >>> int('11', 2)  # 2진수로 표현된 '11'의 10진수 값을 돌려준다
+  3
+  >>> int('1A', 16)  # 16진수로 표현된 '1A'의 10진수 값을 돌려준다.
+  26
+  ```
++ isinstance
+  ```python
+  # 입력으로 받은 인스턴스(첫 번째 인수)가 클래스(두 번째 인수)의 인스턴스이면 True, 아니면 False를 돌려준다.
+  
+  >>> class Person: pass
+  ...
+  >>> a = Person()
+  >>> isinstance(a, Person)
+  True
+  >>> b = 3
+  >>> isinstance(b, Person)
+  False
+  ```
++ len
+  ```python
+  # 입력값의 길이(요소의 총 개수)를 돌려준다.
+  
+  >>> len("python")
+  6
+  >>> len([1, 2, 3])
+  3
+  >>> len((1, 'a'))
+  2
+  ```
++ list
+  ```python
+  # 반복 가능한 자료형을 입력받아 리스트로 만들어 돌려준다.
+  >>> list('python')
+  ['p', 'y', 't', 'h', 'o', 'n']
+  >>> list((1, 2, 3))
+  [1, 2, 3]
+  
+  # 리스트를 입력값으로 주면 동일한 리스트를 복사하여 돌려준다.
+  >>> a = [1, 2, 3]
+  >>> b = list(a)
+  >>> b
+  [1, 2, 3]
+  ```
++ map
+  ```python
+  # 입력받은 함수(첫 번째 인수)에 의해 반복 가능한 자료(두 번째 인수)의 각 요소가 수행된 결과를 묶어서 돌려준다.
+  
+  # two_times.py
+  def two_times(numberList):
+      result = []
+      for number in numberList:
+          result.append(number * 2)
+      return result
+      
+  result = two_times([1, 2, 3, 4])
+  print(result)
   
   
+  [2, 4, 6, 8]
+  ```
+  ```python
+  # map함수를 활용하여 위 two_times함수 예제를 다음과 같이 바꿀 수 있다.
+  >>> def two_times(x):
+  ...     return x * 2
+  ...
+  >>> list(map(two_times, [1, 2, 3, 4]))
+  [2, 4, 6, 8]
   
+  # lambda를 사용해 더욱 간략하게 만들 수 있다.
+  >>> list(map(lambda a: a*2, [1, 2, 3, 4]))
+  [2, 4, 6, 8]
+  ```
++ max
+  ```python
+  # 반복 가능한 자료형을 인수로 입력받아 최대값을 돌려준다.
+  >>> max([1, 2, 3])
+  3
+  >>> max('python')
+  'y'
+  ```
++ min
+  ```python
+  # 반복 가능한 자료형을 인수로 입력받아 최소값을 돌려준다.
+  >>> min([1, 2, 3])
+  1
+  >>> min("python")
+  'h'
+  ```
++ oct
+  ```python
+  # 인수로 받은 정수 형태의 숫자를 8진수 문자열로 돌려준다.
   
+  >>> oct(34)
+  '0o42'
+  >>> oct(12345)
+  '0o30071'
+  ```
++ open
+  + '파일 이름'(첫 번째 인수)와 '읽기 방법'(두 번째 인수)을 입력받아 파일 객체를 돌려준다.
+  + 두 번째 인수인 '읽기 방법'이 생략되면 기본값인 읽기 전용 모드(r)로 파일 객체를 돌려준다.
   
+    mode (두 번째 인수) | 설명
+    ----------------- | -----
+    w | 쓰기 모드로 파일 열기 
+    r | 읽기 모드로 파일 열기
+    a | 추가 모드로 파일 열기
+    b | 바이너리 모드로 파일 열기
   
+    ```python
+    # 모드(두 번째 인수)가 생략되면 기본값으로 읽기 모드(r)를 갖기 때문에 fread와 fread2는 동일한 결과를 돌려준다.
+    >>> fread = open("read_mode.txt", 'r')
+    >>> fread2 = open("read_mode.txt")
   
+    # 추가 모드 예시
+    >>> fappend = open("append_mode.txt", 'a')
   
-  
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # 바이너리 모드(b)는 다른 모드(w, r, a)와 함께 사용한다.
+    >>> f = open("binary_file", 'rb')  # 'rb'는 '바이너리 읽기 모드'를 의미한다.
+    ```
++ ord
+  ```python
+  # 
