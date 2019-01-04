@@ -1841,3 +1841,122 @@ print(result)
     >>> round(17/3, 4)
     5.6667
     ```
+---
+#### 05-6. 외장 함수
+1 sys
+  + sys모듈은 파이썬 인터프리터가 제공하는 함수/변수들을 직접 제어할 수 있게 해준다.
+    1. 명령 행에서 인수 전달하기 (sys.argv)
+      ```python
+      # argv_test.py
+      import sys
+      print(sys.argv)
+      
+      # 명령 프롬프트 창에서 실행
+      C:\doit>python argv_test.py you need python
+      ['argv_test.py', 'abc', 'pey', 'guido']   # python이라는 명령어 뒤의 모든 것들이 공백을 기준으로 나뉘어서 sys.argv의 요소가 된다.
+      ```
+    2. 강제로 스크립트 종료하기 (sys.exit)
+      ```python
+      >>> import sys
+      >>> sys.exit()   # 'Ctrl+Z' 또는 'Ctrl+D' 와 같이 인터프리터(또는 프로그램)을 종료시킨다.
+      ```
+    3. 자신이 만든 모듈 불러와 사용하기 (sys.path)
+      ```python
+      >>> import sys
+      >>> sys.path   # sys.path는 파이썬 포듈이 저장되어 있는 위치를 나타낸다.
+      ['', 'C:\\Users\\Jungjoon ...]   # 첫 번째 요소 ''는 현재 디렉토리를 의미한다.
+      
+      # sys.path.append를 통해 경로명을 추가해 파이썬 모듈을 사용할 수 있다. 다만 파이썬을 종료하면 sys.path가 초기화된다.  
+      >>> sys.path.append("C:/doit")
+      >>> sys.path
+      ['', 'C:\\Users\\Jungjoon ... , 'C:\\doit']
+      ```
+2. pickle
+  + pickle모듈은 객체의 형태를 유지한 채 파일에 저장하고 물러올 수 있게 한다.
+    ```python
+    # pickle.dump를 이용해 객체(data)를 파일에 저장한다.
+    >>> import pickle
+    >>> f = open("test.txt", 'wb')
+    >>> data = {1: 'python', 2: 'you need'}
+    >>> pickle.dump(data, f)
+    >>> f.close
+    
+    # 위에서 저장한 파일을 pickle.load를 통해 원래의 객체 상태 그대로 불러온다.
+    >>> import pickle
+    >>> f = open("test.txt", 'rb')
+    >>> data = pickle.load(f)
+    >>> print(data)
+    /
+    ```
+3. os
+  + os모듈은 환경 변수, 디렉토리, 파일 등의 OS자원을 제어할 수 있게 해준다.
+    1. 내 시스템의 환경 변수값을 알고 싶을 때 (os.environ)
+      ```python
+      >>> import os
+      >>> os.environ
+      environ({'...': '...', ...})   # 환경 변수 정보를 딕셔너리 객체로 돌려준다.
+      
+      # 딕셔너리 형태로 돌려받기 때문에 파이썬 문법에 따라 아래와 같이 호출할 수 있다.
+      >>> os.environ['PATH']
+      'C:\\Program Files ...'
+      ```
+    2. 디렉토리 위치 변경하기 (os.chdir)
+      ```python
+      >>> os.chdir('C:/Users/Jungjoon')
+      >>> os.chdir('C:/doit')
+      ```
+    3. 현재 디렉토리 위치 돌려받기 (os.getcwd)
+      ```python
+      >>> os.getcwd()
+      'C:\\doit'
+      ```
+    4. 시스템 명령어 호출하기 (os,system)
+      + `os.system("명령어")`와 같이 사용하며, 시스템 자체의 프로그램이나 명령어를 호출할 수 있다.
+        ```python
+        >>> os.system("dir")
+        C:\doit 디렉터리
+        
+        ...
+        ```
+    5. 시스템 명령어 결과값 파일로 돌려받기 (os.popen)
+      + `os.popen("명령어")`는 결과값을 읽기 모드의 파일 객체로 돌려준다.
+        ```python
+        >>> f = os.popen("dir")
+        >>> print(f.read())
+        C:\doit 디렉터리
+        
+        ...
+        ```
+    6. 기타
+    
+        함수 | 설명
+        ---- | ----
+        os.mkdir("디렉토리") | 디렉토리를 생성한다.
+        os.rmdir("디렉토리") | 디렉토리를 삭제한다. 단 디렉토리가 비어있어야 가능하다.
+        os.unlink("파일") | 파일을 삭제한다.
+        os.rename("파일", "새로운 파일명") | "파일" 이름을 "새로운 파일명"으로 바꾼다.
+      
+4. shutil
+  + shutil모듈은 파일을 복사해준다.
+    ```python
+    >>> import shutil
+    >>> shutil.copy("abc.txt", "def.txt")   # abc파일을 def파일에 복사한다. def가 디렉토리면 그 안에 abc파일을 생성하거나 덮어쓴다. 
+    >>> f = open("abc.txt". 'r')
+    >>> f_copy = open("def.txt". 'r')
+    >>> print(f.read())
+    EEE
+    DDD
+    CCC
+    BBB
+    AAA
+    
+    >>> print(f_copy.read())   # abc파일을 복사했으므로 내용이 동일하다.
+    EEE
+    DDD
+    CCC
+    BBB
+    AAA
+    
+    ```
+5. glob
+  + _To be completed_
