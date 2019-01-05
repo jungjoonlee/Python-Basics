@@ -1959,4 +1959,69 @@ print(result)
     
     ```
 5. glob
-  + _To be completed_
+  + glob모듈은 디렉토리에 있는 파일을 읽어서 리스트로 돌려주며, 메타 문자를 사용해 원하는 파일만 읽어올 수도 있다.
+    ```python
+    # 메타 문자 '*'를 활용해 a로 시작하는 파일만 읽을 수 있다.
+    >>> import glob
+    >>> glob.glob("C:/doit/a*")
+    ['C:/doit\\abc.txt', 'C:/doit\\adddata.py', 'C:/doit\\argv_test.py']
+    ```
+6. tempfile
+  + tempfile모듈을 활용해 임시 파일을 만들 수 있다.
+    ```python
+    # tempfile.mktemp()는 중복되지 않는 이름(무작위 생성)의 임시 파일을 만들어 돌려준다.
+    >>> import tempfile
+    >>> filename = tempfile.mktemp()
+    >>> filename
+    'C:\\Users\\Jungjoon ... \\Temp\\ ~73il4x5'
+    
+    # temp.TemporaryFile()은 임시 저장 공간용 파일 객체를 돌려준다. 바이너리 쓰기 모드(wb)가 기본이며, f.close()를 호출하면 파일은 사라진다.
+    >>> f = tempfile.TemporaryFile()
+    >>> f.close
+    <bound method ... >
+7. time
+  1. time.time()
+    + UTC를 이용하여 현재 시간을 실수 형태로 돌려준다. 1970년 1월 1일 0시 0분 0초를 기준으로 지난 시간을 초 단위로 돌려준다.
+      ```python
+      >>> import time
+      >>> time.time
+      1546655861.8563187
+      ```
+  2. time.localtime()
+    + time.time()의 결과값을 '연, 월, 일, 시, 분, 초' 형태로 변환해 돌려준다.
+      ```python
+      >>> time.localtime()
+      time.struct_time(tm_year=2019, tm_mon=1, tm_mday=5, tm_hour=11, tm_min=39, tm_sec=56, tm_wday=5, tm_yday=5, tm_isdst=0)
+      ```
+  3. time.asctime()
+    + time.localtime()의 결과값을 날짜와 시간을 알아보기 쉬운 형태로 돌려준다.
+      ```python
+      >>> time.asctime()
+      'Sat Jan 5 11:55:39 2019'
+      ```
+  4. time.strftime(포맷코드, 시간)
+    + strf함수의 포맷코드를 사용해 시간을 여러 형태로 표현할 수 있다.
+      ```python
+      >>> time.strftime('%x', time.localtime())
+      '01/05/19'   # '%x'는 설정된 local을 기준의 날짜를 출력한다. 
+      >>> time.strftime('%X', time.localtime())
+      '12:12:41'   # '%X'는 설정된 local을 기준의 시간을 출력한다. 
+      >>> time.strftime('%c', time.localtime())
+      'Sat Jan  5 12:12:53 2019'   # '%c'는 설정된 local을 기준의 요일, 날짜, 시간을 출력한다. 
+      ```
+  5. time.sleep(시간 간격)
+    + 인수로 받은 시간 간격을 두고 명령을 수행한다. 주로 루프(loop) 안에 사용한다. 
+      ```python
+      # sleep1.py
+      import time
+      for i in range(10):
+          print(i)
+          time.sleep(1)  # 인수의 시간 단위는 초이며 형태는 실수이다. 반복문을 수행하면 1초 간격으로 0부터 9까지 출력한다.
+      ```
+8. calendar
+  + 달력을 볼 수 있게 해주는 모듈이다.
+    1. calendar.calendat(연도)
+---
+9. random
+10. webbrowser
+11. 연습문제
