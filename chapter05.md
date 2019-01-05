@@ -1980,48 +1980,78 @@ print(result)
     >>> f.close
     <bound method ... >
 7. time
-  1. time.time()
-    + UTC를 이용하여 현재 시간을 실수 형태로 돌려준다. 1970년 1월 1일 0시 0분 0초를 기준으로 지난 시간을 초 단위로 돌려준다.
-      ```python
-      >>> import time
-      >>> time.time
-      1546655861.8563187
-      ```
-  2. time.localtime()
-    + time.time()의 결과값을 '연, 월, 일, 시, 분, 초' 형태로 변환해 돌려준다.
-      ```python
-      >>> time.localtime()
-      time.struct_time(tm_year=2019, tm_mon=1, tm_mday=5, tm_hour=11, tm_min=39, tm_sec=56, tm_wday=5, tm_yday=5, tm_isdst=0)
-      ```
-  3. time.asctime()
-    + time.localtime()의 결과값을 날짜와 시간을 알아보기 쉬운 형태로 돌려준다.
-      ```python
-      >>> time.asctime()
-      'Sat Jan 5 11:55:39 2019'
-      ```
-  4. time.strftime(포맷코드, 시간)
-    + strf함수의 포맷코드를 사용해 시간을 여러 형태로 표현할 수 있다.
-      ```python
-      >>> time.strftime('%x', time.localtime())
-      '01/05/19'   # '%x'는 설정된 local을 기준의 날짜를 출력한다. 
-      >>> time.strftime('%X', time.localtime())
-      '12:12:41'   # '%X'는 설정된 local을 기준의 시간을 출력한다. 
-      >>> time.strftime('%c', time.localtime())
-      'Sat Jan  5 12:12:53 2019'   # '%c'는 설정된 local을 기준의 요일, 날짜, 시간을 출력한다. 
-      ```
-  5. time.sleep(시간 간격)
-    + 인수로 받은 시간 간격을 두고 명령을 수행한다. 주로 루프(loop) 안에 사용한다. 
-      ```python
-      # sleep1.py
-      import time
-      for i in range(10):
-          print(i)
-          time.sleep(1)  # 인수의 시간 단위는 초이며 형태는 실수이다. 반복문을 수행하면 1초 간격으로 0부터 9까지 출력한다.
-      ```
+      1. time.time()  
+         UTC를 이용하여 현재 시간을 실수 형태로 돌려준다. 1970년 1월 1일 0시 0분 0초를 기준으로 지난 시간을 초 단위로 돌려준다.
+          ```python
+          >>> import time
+          >>> time.time
+          1546655861.8563187
+          ```
+      2. time.localtime()  
+         time.time()의 결과값을 '연, 월, 일, 시, 분, 초' 형태로 변환해 돌려준다.
+          ```python
+          >>> time.localtime()
+          time.struct_time(tm_year=2019, tm_mon=1, tm_mday=5, tm_hour=11, tm_min=39, tm_sec=56, tm_wday=5, tm_yday=5, tm_isdst=0)
+          ```
+      3. time.asctime()  
+         time.localtime()의 결과값을 날짜와 시간을 알아보기 쉬운 형태로 돌려준다.
+          ```python
+          >>> time.asctime()
+          'Sat Jan 5 11:55:39 2019'
+          ```
+      4. time.strftime(포맷코드, 시간)  
+         strf함수의 포맷코드를 사용해 시간을 여러 형태로 표현할 수 있다.
+          ```python
+          >>> time.strftime('%x', time.localtime())
+          '01/05/19'   # '%x'는 설정된 local을 기준의 날짜를 출력한다. 
+          >>> time.strftime('%X', time.localtime())
+          '12:12:41'   # '%X'는 설정된 local을 기준의 시간을 출력한다. 
+          >>> time.strftime('%c', time.localtime())
+          'Sat Jan  5 12:12:53 2019'   # '%c'는 설정된 local을 기준의 요일, 날짜, 시간을 출력한다. 
+          ```
+      5. time.sleep(시간 간격)  
+         인수로 받은 시간 간격을 두고 명령을 수행한다. 주로 루프(loop) 안에 사용한다. 
+          ```python
+          # sleep1.py
+          import time
+          for i in range(10):
+              print(i)
+              time.sleep(1)  # 인수의 시간 단위는 초이며 형태는 실수이다. 반복문을 수행하면 1초 간격으로 0부터 9까지 출력한다.
+          ```
 8. calendar
   + 달력을 볼 수 있게 해주는 모듈이다.
-    1. calendar.calendat(연도)
----
+      1. calendar.calendar(연도)  
+         입력값으로 받은 연도의 전체 달력을 돌려준다.
+          ```python
+          >>> import calendar
+          >>> print(calendar.calendar(2019))
+          '    2019\n\n ... 30 31\n'
+          ```
+      2. calendar.prcal(연도)  
+         calendar.calendar()와 같이 입력한 해의 전체 달력을 돌려주며, 결과값이 calendar함수보다 보기 편하다.(일반 달력과 동일함)
+          ```python
+          >>> calendar.prcal(2019)
+          # 결과값으로 일반 달력과 동일한 형태의 2019년 달력을 돌려준다.
+          ```
+      3. calendar.prmonth(연도, 월)  
+         입력한 연도의 해당 월 달력을 돌려준다.
+          ```python
+          >>> calendar.prmonth(2019, 1)
+          # 결과값으로 일반 달력과 동일한 형태의 2019년 1월 달력을 돌려준다.
+          ```
+      4. calendar.weekday(연, 월, 일)  
+         입력받은 날짜에 해당하는 요일을 돌려준다. 결과값은 0부터 6까지의 숫자이며, 각 숫자는 순차적으로 월요일부터 일요일까지를 의미한다.
+          ```python
+          >>> calendar.weekday(2019, 1, 5)
+          5  # 토요일을 의미한다.
+          >>> calendar.weekday(2019, 1, 7)
+          0  # 월요일을 의미한다.
+          ```
+      5. calendar.monthrange(연, 월)  
+         입력받은 달 1일의 요일 정보와 해당 월의 총 일수를 튜플 형태로 돌려준다.
+          ```python
+          >>> calendar.monthrange(2019, 1)
+          (1, 31)  # 2019년 1월 1일은 화요일(1)이며, 총 일수는 31일이다.
+          ```
 9. random
-10. webbrowser
-11. 연습문제
+  + _To be completed_
