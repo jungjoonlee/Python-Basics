@@ -1981,26 +1981,26 @@ print(result)
     <bound method ... >
 7. time
       1. time.time()  
-         UTC를 이용하여 현재 시간을 실수 형태로 돌려준다. 1970년 1월 1일 0시 0분 0초를 기준으로 지난 시간을 초 단위로 돌려준다.
+         : UTC를 이용하여 현재 시간을 실수 형태로 돌려준다. 1970년 1월 1일 0시 0분 0초를 기준으로 지난 시간을 초 단위로 돌려준다.
           ```python
           >>> import time
           >>> time.time
           1546655861.8563187
           ```
       2. time.localtime()  
-         time.time()의 결과값을 '연, 월, 일, 시, 분, 초' 형태로 변환해 돌려준다.
+         : time.time()의 결과값을 '연, 월, 일, 시, 분, 초' 형태로 변환해 돌려준다.
           ```python
           >>> time.localtime()
           time.struct_time(tm_year=2019, tm_mon=1, tm_mday=5, tm_hour=11, tm_min=39, tm_sec=56, tm_wday=5, tm_yday=5, tm_isdst=0)
           ```
       3. time.asctime()  
-         time.localtime()의 결과값을 날짜와 시간을 알아보기 쉬운 형태로 돌려준다.
+         : time.localtime()의 결과값을 날짜와 시간을 알아보기 쉬운 형태로 돌려준다.
           ```python
           >>> time.asctime()
           'Sat Jan 5 11:55:39 2019'
           ```
       4. time.strftime(포맷코드, 시간)  
-         strf함수의 포맷코드를 사용해 시간을 여러 형태로 표현할 수 있다.
+         : strf함수의 포맷코드를 사용해 시간을 여러 형태로 표현할 수 있다.
           ```python
           >>> time.strftime('%x', time.localtime())
           '01/05/19'   # '%x'는 설정된 local을 기준의 날짜를 출력한다. 
@@ -2010,7 +2010,7 @@ print(result)
           'Sat Jan  5 12:12:53 2019'   # '%c'는 설정된 local을 기준의 요일, 날짜, 시간을 출력한다. 
           ```
       5. time.sleep(시간 간격)  
-         인수로 받은 시간 간격을 두고 명령을 수행한다. 주로 루프(loop) 안에 사용한다. 
+         : 인수로 받은 시간 간격을 두고 명령을 수행한다. 주로 루프(loop) 안에 사용한다. 
           ```python
           # sleep1.py
           import time
@@ -2021,26 +2021,26 @@ print(result)
 8. calendar
   + 달력을 볼 수 있게 해주는 모듈이다.
       1. calendar.calendar(연도)  
-         입력값으로 받은 연도의 전체 달력을 돌려준다.
+         : 입력값으로 받은 연도의 전체 달력을 돌려준다.
           ```python
           >>> import calendar
           >>> print(calendar.calendar(2019))
           '    2019\n\n ... 30 31\n'
           ```
       2. calendar.prcal(연도)  
-         calendar.calendar()와 같이 입력한 해의 전체 달력을 돌려주며, 결과값이 calendar함수보다 보기 편하다.(일반 달력과 동일함)
+         : calendar.calendar()와 같이 입력한 해의 전체 달력을 돌려주며, 결과값이 calendar함수보다 보기 편하다.(일반 달력과 동일함)
           ```python
           >>> calendar.prcal(2019)
           # 결과값으로 일반 달력과 동일한 형태의 2019년 달력을 돌려준다.
           ```
       3. calendar.prmonth(연도, 월)  
-         입력한 연도의 해당 월 달력을 돌려준다.
+         : 입력한 연도의 해당 월 달력을 돌려준다.
           ```python
           >>> calendar.prmonth(2019, 1)
           # 결과값으로 일반 달력과 동일한 형태의 2019년 1월 달력을 돌려준다.
           ```
       4. calendar.weekday(연, 월, 일)  
-         입력받은 날짜에 해당하는 요일을 돌려준다. 결과값은 0부터 6까지의 숫자이며, 각 숫자는 순차적으로 월요일부터 일요일까지를 의미한다.
+         : 입력받은 날짜에 해당하는 요일을 돌려준다. 결과값은 0부터 6까지의 숫자이며, 각 숫자는 순차적으로 월요일부터 일요일까지를 의미한다.
           ```python
           >>> calendar.weekday(2019, 1, 5)
           5  # 토요일을 의미한다.
@@ -2048,7 +2048,7 @@ print(result)
           0  # 월요일을 의미한다.
           ```
       5. calendar.monthrange(연, 월)  
-         입력받은 달 1일의 요일 정보와 해당 월의 총 일수를 튜플 형태로 돌려준다.
+         : 입력받은 달 1일의 요일 정보와 해당 월의 총 일수를 튜플 형태로 돌려준다.
           ```python
           >>> calendar.monthrange(2019, 1)
           (1, 31)  # 2019년 1월 1일은 화요일(1)이며, 총 일수는 31일이다.
@@ -2056,14 +2056,14 @@ print(result)
 9. random
   + 난수를 발생시키는 모듈이다.
     1. random.random()  
-       0.0-1.0 사이의 실수를 난수로 돌려준다.
+       : 0.0-1.0 사이의 실수를 난수로 돌려준다.
         ```python
         >>> import random
         >>> random.random()
         0.786622 ...
         ```
     2. random.randint(최소값, 최대값)  
-       입력한 최소값과 최대값 사이의 정수를 난수로 돌려준다.
+       : 입력한 최소값과 최대값 사이의 정수를 난수로 돌려준다.
         ```python
         >>> random.randint(1, 10)  # 1-10 사이의 정수를 난수로 돌려준다.
         4
@@ -2071,7 +2071,7 @@ print(result)
         36
         ```
     3. random.shuffle(리스트)  
-       리스트의 요소를 무작위로 섞어서 돌려준다.
+       : 리스트의 요소를 무작위로 섞어서 돌려준다.
         ```python
         >>> import random
         >>> data = [1, 2, 3, 4, 5]
@@ -2124,21 +2124,91 @@ print(result)
 10. webbrowser
   + 시스템의 기본 웹 브라우저를 자동으로 실행한다.
     1. webbrowser.open(URL)  
-       웹 브라우저를 실행시켜 입력받은 URL로 접속한다. 웹 브라우저가 이미 실행 중이면 새 탭을 열어 입력 주소로 이동한다.
+       : 웹 브라우저를 실행시켜 입력받은 URL로 접속한다. 웹 브라우저가 이미 실행 중이면 새 탭을 열어 입력 주소로 이동한다.
         ```python
         >>> import webbrowser
         >>> webbrowser.open("https://google.com")
         True   # True를 돌려주고 웹 브라우저를 열어 구글에 접속한다.
         ```
     2. webbrowse.open_new(URL)  
-       웹 브라우저를 실행 중이더라도 새로운 창을 열어 입력 주소로 접속한다.
+       : 웹 브라우저를 실행 중이더라도 새로운 창을 열어 입력 주소로 접속한다.
         ```python
         >>> webbrowser.open_new("https://google.com")
         True   # True를 돌려주고 새 탭을 열어 구글에 접속한다.
         ```
 + 연습문제
-  1. sys.argv
-  2. os
-  3. glob
-  4. time
-  5. random
+  1. sys.argv  
+     : 다음과 같이 실행할 때 입력 값을 모두 더하여 출력하는 스크립트(`C:\doit\myargv.py`)를 작성하시오.
+      ```python
+      C:\doit>python myargv.py 1 2 3 4 5 6 7 8 9 10
+      55
+      ```
+      ```python
+      # 풀이
+      # myargv.py
+      import sys
+      del sys.argv[0]
+      print(sum(map(int, sys.argv)))
+      ```
+      ```python
+      # 교재 풀이
+      import sys
+      
+      numbers = sys.argv[1:]
+      
+      result = 0
+      for number in numbers:
+          result += int(number)
+      print(result)
+      ```
+  2. os  
+     : os모듈을 이용하여 다음과 같이 동작하도록 코드를 작성해 보자.  
+       1. `C:\doit` 이라는 디렉토리로 이동한다.
+       2. dir 명령을 실행하고 그 결과를 변수에 담는다.
+       3. dir 명령의 결과를 출력한다.
+         ```python
+         # 풀이
+         import os
+         os.chdir("C:\doit")
+         f = os.popen("dir")
+         print(f.read())
+         ```
+  3. glob  
+     : glob모듈을 이용하여 `C:\doit` 디렉토리의 파일 중 확장자가 py인 파일만 출력하는 프로그램을 작성하시오.
+       ```python
+       # 풀이
+       import glob
+       print(glob.glob("C:\doit\*.py"))
+       ```
+  4. time  
+     : time모듈을 이용하여 현재 날짜와 시간을 다음과 같은 형식으로 출력하시오.
+       `YYYY/MM/DD HH:mm:ss (예: 2018/04/03 17:20:32)`
+       ```python
+       # 풀이
+       >>> import time
+       >>> time.strftime('%Y/%m/%d' + ' %X', time.localtime())
+       '2019/01/07 17:05:28'
+       ```
+       ```python
+       # 교재 풀이
+       >>> import time
+       >>> time.strftime('%Y/%m/%d %H:%M:%S')
+       '2019/01/07 17:41:43'
+       ```
+  5. random  
+     : random모듈을 이용하여 로또번호(1~45사이의 숫자 6개)를 생성하시오.(단, 중복된 숫자가 있으면 안됨)
+       ```python
+       # 풀이
+       import random
+       
+       result = []
+       while len(result) < 6:
+           number = random.randint(1, 45)
+           if number not in result:
+               result.append(number)
+               
+       print(result)
+       
+       # 실행 결과
+       [24, 20, 28, 10, 35, 41]
+       ```
