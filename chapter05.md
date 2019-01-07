@@ -2054,4 +2054,91 @@ print(result)
           (1, 31)  # 2019년 1월 1일은 화요일(1)이며, 총 일수는 31일이다.
           ```
 9. random
-  + _To be completed_
+  + 난수를 발생시키는 모듈이다.
+    1. random.random()  
+       0.0-1.0 사이의 실수를 난수로 돌려준다.
+        ```python
+        >>> import random
+        >>> random.random()
+        0.786622 ...
+        ```
+    2. random.randint(최소값, 최대값)  
+       입력한 최소값과 최대값 사이의 정수를 난수로 돌려준다.
+        ```python
+        >>> random.randint(1, 10)  # 1-10 사이의 정수를 난수로 돌려준다.
+        4
+        >>> random. randint(1, 55)  # 1-55 사이의 정수를 난수로 돌려준다.
+        36
+        ```
+    3. random.shuffle(리스트)  
+       리스트의 요소를 무작위로 섞어서 돌려준다.
+        ```python
+        >>> import random
+        >>> data = [1, 2, 3, 4, 5]
+        >>> random.shuffle(data)
+        >>> data
+        [1, 3, 4, 2, 5]
+        ```
+    4. random모듈을 활용한 함수 예시
+        ```python
+        # random_pop.py
+        import random
+        def random_pop(data):
+            number = random.randint(0, len(data)-1)
+            return data.pop(number)
+            
+        if __name__ == "__main__":
+            data = [1, 2, 3, 4, 5]
+            while data:
+                print(random_pop(data))
+        
+        # 명령 프롬프트에서 직접 실행 시
+        C:\doit>python random_pop.py
+        3
+        4
+        5
+        1
+        2
+        # 파이썬 쉘에서 실행 시
+        >>> a = [101, 102, 103, 104, 105]
+        >>> random_pop(a)
+        105
+        >>> a
+        [101, 102, 103, 104]
+        ```
+        ```python
+        # random.choice를 통해 위의 random_pop함수를 보다 직관적으로 만들 수 있다.
+        # random.choice를 입력받은 리스트의 요소 중 하나를 무작위로 돌려준다.
+        
+        def random_pop(data):
+            number = random.choice(data)
+            data.remove(number)
+            return number
+            
+        >>> a = [1, 2, 3, 4, 5]
+        >>> random_pop(a)
+        5
+        >>> a
+        [1, 2, 3, 4]
+        ```
+10. webbrowser
+  + 시스템의 기본 웹 브라우저를 자동으로 실행한다.
+    1. webbrowser.open(URL)  
+       웹 브라우저를 실행시켜 입력받은 URL로 접속한다. 웹 브라우저가 이미 실행 중이면 새 탭을 열어 입력 주소로 이동한다.
+        ```python
+        >>> import webbrowser
+        >>> webbrowser.open("https://google.com")
+        True   # True를 돌려주고 웹 브라우저를 열어 구글에 접속한다.
+        ```
+    2. webbrowse.open_new(URL)  
+       웹 브라우저를 실행 중이더라도 새로운 창을 열어 입력 주소로 접속한다.
+        ```python
+        >>> webbrowser.open_new("https://google.com")
+        True   # True를 돌려주고 새 탭을 열어 구글에 접속한다.
+        ```
++ 연습문제
+  1. sys.argv
+  2. os
+  3. glob
+  4. time
+  5. random
